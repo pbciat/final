@@ -56,10 +56,10 @@ def timing_main(classA_count, classB_count, classA_list, classB_list, classA_rea
 
 def show_stimulate(class_list, right_answer):
     """印出刺激並根據答案進行檢查"""
-    #show the pictures or words
+    # show the pictures or words
     select_stimulate = random.randint(0, len(class_list) - 1)
     print(class_list[select_stimulate])
-    #react time calculate
+    # react time calculate
     if right_answer == 1:
         return check(97)
     elif right_answer == 2:
@@ -81,7 +81,7 @@ def check(unicode):
         print("Wrong Answer!")
         return (0, 0, 1)
 
-#class_list 各種刺激因子
+# class_list 各種刺激因子
 DPP_list = ["蔡英文", "謝長廷", "蘇貞昌", "賴清德", "陳菊", "林佳龍", "鄭文燦"]
 KMT_list = ["馬英九", "朱立倫", "韓國瑜", "吳敦義", "王金平", "侯友宜", "盧秀燕"]
 positive_list = ["讚","棒","好","優秀","了不起","卓越","進步","開明","友善"]
@@ -92,7 +92,7 @@ KMT_reacttime_list  = []
 positive_reacttime_list  = []
 negative_reacttime_list  = []
 
-#資料輸入
+# 資料輸入
 print("Taiwanese Parties IAT")
 time.sleep(2)
 print("If you want to end the program, please press \"e\"!")
@@ -107,13 +107,13 @@ while tendency != "DPP" and tendency != "KMT":
     print("You are? (DPP or KMT)")
     tendency = input()
 
-#實驗區塊1
-#民進黨A
-#國民黨L
-#-民進黨跟國民黨各出現10次
-#-不一定要交叉出現
-#-使用者按錯不計
-#-已出現過的可重複出現
+# 實驗區塊1
+# 民進黨A
+# 國民黨L
+# 民進黨跟國民黨各出現10次
+# 不一定要交叉出現
+# 使用者按錯不計
+# 已出現過的可重複出現
 time.sleep(1)
 print("Part1")
 time.sleep(1)
@@ -126,13 +126,13 @@ while DPP_count < 10 or KMT_count < 10:
 DPP_reacttime_list.append(round(DPP_reacttime, 4))
 KMT_reacttime_list.append(round(KMT_reacttime, 4))
 
-#實驗區塊2
-#正面A
-#負面L
-#-正面跟負面各出現10次
-#-不一定要交叉出現
-#-使用者按錯不計
-#-已出現過的可重複出現
+# 實驗區塊2
+# 正面A
+# 負面L
+# 正面跟負面各出現10次
+# 不一定要交叉出現
+# 使用者按錯不計
+# 已出現過的可重複出現
 time.sleep(1)
 print("Part2")
 time.sleep(1)
@@ -145,17 +145,17 @@ while positive_count < 10 or negative_count < 10:
 positive_reacttime_list.append(round(positive_reacttime, 4))
 negative_reacttime_list.append(round(negative_reacttime, 4))
 
-#實驗區塊3
-#民進黨A
-#國民黨L
-#正面A
-#負面L
-#-四種類別各出現10次
-#-詞彙與政黨須交叉出現
-#-詞彙間不須交叉出現
-#-政黨間不須交叉出現
-#-使用者按錯不計
-#-已出現過的可重複出現
+# 實驗區塊3
+# 民進黨A
+# 國民黨L
+# 正面A
+# 負面L
+# 四種類別各出現10次
+# 詞彙與政黨須交叉出現
+# 詞彙間不須交叉出現
+# 政黨間不須交叉出現
+# 使用者按錯不計
+# 已出現過的可重複出現
 time.sleep(1)
 print("Part3")
 time.sleep(1)
@@ -171,13 +171,13 @@ negative_reacttime_list.append(round(negative_reacttime, 4))
 DPP_reacttime_list.append(round(DPP_reacttime, 4))
 KMT_reacttime_list.append(round(KMT_reacttime, 4))
 
-#實驗區塊4
-#國民黨A
-#民進黨L
-#-民進黨跟國民黨各出現10次
-#-不一定要交叉出現
-#-使用者按錯不計
-#-已出現過的可重複出現
+# 實驗區塊4
+# 國民黨A
+# 民進黨L
+# 民進黨跟國民黨各出現10次
+# 不一定要交叉出現
+# 使用者按錯不計
+# 已出現過的可重複出現
 time.sleep(1)
 print("Part4")
 time.sleep(1)
@@ -190,17 +190,17 @@ while KMT_count < 10 or DPP_count < 10:
 KMT_reacttime_list.append(round(KMT_reacttime, 4))
 DPP_reacttime_list.append(round(DPP_reacttime, 4))
 
-#實驗區塊5
-#國民黨A
-#民進黨L
-#正面A
-#負面L
-#-四種類別各出現10次
-#-詞彙與政黨須交叉出現
-#-詞彙間不須交叉出現
-#-政黨間不須交叉出現
-#-使用者按錯不計
-#-已出現過的可重複出現
+# 實驗區塊5
+# 國民黨A
+# 民進黨L
+# 正面A
+# 負面L
+# 四種類別各出現10次
+# 詞彙與政黨須交叉出現
+# 詞彙間不須交叉出現
+# 政黨間不須交叉出現
+# 使用者按錯不計
+# 已出現過的可重複出現
 time.sleep(1)
 print("Part5")
 time.sleep(1)
@@ -216,7 +216,7 @@ negative_reacttime_list.append(round(negative_reacttime, 4))
 KMT_reacttime_list.append(round(KMT_reacttime, 4))
 DPP_reacttime_list.append(round(DPP_reacttime, 4))
 
-#結果
+# 結果
 time.sleep(1)
 if tendency == "DPP":
     if KMT_reacttime_list[1] + DPP_reacttime_list[1] <= KMT_reacttime_list[3] + DPP_reacttime_list[3]:
