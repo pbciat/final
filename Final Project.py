@@ -48,7 +48,6 @@ def timing_main(classA_count, classB_count, classA_list, classB_list, classA_rea
         classA_reacttime += reacttime
         classA_count += count
         wrong_count_total += wrong_count
-    print(wrong_count_total)
     if wrong_count_total == 6:
         print("Too much wrong answer!")
         sys.exit()
@@ -75,6 +74,9 @@ def check(unicode):
         react_time = t_end - t_start
         print("Correct!")
         return (react_time, 1, 0)
+    elif ord(char) == 101:
+        print("Close the program!")
+        sys.exit()
     else:
         print("Wrong Answer!")
         return (0, 0, 1)
@@ -91,8 +93,19 @@ positive_reacttime_list  = []
 negative_reacttime_list  = []
 
 #資料輸入
+print("Taiwanese Parties IAT")
+time.sleep(2)
+print("If you want to end the program, please press \"e\"!")
+time.sleep(3)
+print("If you have more than 5 wrong answers in any parts, the program will be ended!")
+time.sleep(3)
 print("You are? (DPP or KMT)")
 tendency = input()
+while tendency != "DPP" and tendency != "KMT":
+    print("Please input one of the parties!")
+    time.sleep(1)
+    print("You are? (DPP or KMT)")
+    tendency = input()
 
 #實驗區塊1
 #民進黨A
@@ -103,7 +116,9 @@ tendency = input()
 #-已出現過的可重複出現
 time.sleep(1)
 print("Part1")
-time.sleep(3)
+time.sleep(1)
+print("Press \"a\" when relating to DPP, press \"l\" when relating to KMT")
+time.sleep(4)
 reset()
 while DPP_count < 10 or KMT_count < 10:
     DPP_count, KMT_count, DPP_reacttime, KMT_reacttime, wrong_count_total = timing_main(DPP_count, KMT_count, DPP_list, KMT_list, DPP_reacttime, KMT_reacttime, wrong_count_total)
@@ -120,7 +135,9 @@ KMT_reacttime_list.append(round(KMT_reacttime, 4))
 #-已出現過的可重複出現
 time.sleep(1)
 print("Part2")
-time.sleep(3)
+time.sleep(1)
+print("Press \"a\" when relating to positive one, press \"l\" when relating to negative one")
+time.sleep(4)
 reset()
 while positive_count < 10 or negative_count < 10:
     positive_count, negative_count, positive_reacttime, negative_reacttime, wrong_count_total = timing_main(positive_count, negative_count, positive_list, negative_list, positive_reacttime, negative_reacttime, wrong_count_total)
@@ -141,7 +158,9 @@ negative_reacttime_list.append(round(negative_reacttime, 4))
 #-已出現過的可重複出現
 time.sleep(1)
 print("Part3")
-time.sleep(3)
+time.sleep(1)
+print("Press \"a\" when relating to DPP or positive one, press \"l\" when relating to KMT or negative one")
+time.sleep(4)
 reset()
 while positive_count < 10 or negative_count < 10 or KMT_count < 10 or DPP_count < 10:
     positive_count, negative_count, positive_reacttime, negative_reacttime, wrong_count_total = timing_main(positive_count, negative_count, positive_list, negative_list, positive_reacttime, negative_reacttime, wrong_count_total)
@@ -161,7 +180,9 @@ KMT_reacttime_list.append(round(KMT_reacttime, 4))
 #-已出現過的可重複出現
 time.sleep(1)
 print("Part4")
-time.sleep(3)
+time.sleep(1)
+print("Press \"a\" when relating to KMT, press \"l\" when relating to DPP")
+time.sleep(4)
 reset()
 while KMT_count < 10 or DPP_count < 10:
     KMT_count, DPP_count, KMT_reacttime, DPP_reacttime, wrong_count_total = timing_main(KMT_count, DPP_count, KMT_list, DPP_list, KMT_reacttime, DPP_reacttime, wrong_count_total)
@@ -182,7 +203,9 @@ DPP_reacttime_list.append(round(DPP_reacttime, 4))
 #-已出現過的可重複出現
 time.sleep(1)
 print("Part5")
-time.sleep(3)
+time.sleep(1)
+print("Press \"a\" when relating to KMT or positive one, press \"l\" when relating to DPP or negative one")
+time.sleep(4)
 reset()
 while positive_count < 10 or negative_count < 10 or KMT_count < 10 or DPP_count < 10:
     positive_count, negative_count, positive_reacttime, negative_reacttime, wrong_count_total = timing_main(positive_count, negative_count, positive_list, negative_list, positive_reacttime, negative_reacttime, wrong_count_total)
