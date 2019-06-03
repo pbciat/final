@@ -8,12 +8,13 @@ pip install websockets
 
 ## 執行
 
-先在 Terminal 執行 `server.py`:
+1. 在 Terminal 執行 `server.py`:
 
-```bash
-python3 server.py
-```
+  ```bash
+  python server.py
+  ```
 
-接著直接在瀏覽器 (chrome) 打開 `websocket-demo/index.html`，就可以開始囉～
+2. 接著到 <https://pbciat.github.io/pbc-final/websocket-demo> 就可以進行實驗囉～  
+(或在本地端用瀏覽器打開 `websocket-demo/index.html`)
 
-在跑 IAT 的時候，Terminal 裡面會印出 browser 和 Python (server) 溝通的內容。
+  在 IAT 跑完的時候，Terminal 裡面會印出 browser 和 Python (server) 溝通的內容。
