@@ -4,7 +4,9 @@ var detect_key = true;
 var start = new Date().getTime();
 
 
-
+/*
+ToDo: Ignore keys other than space on staring or interval trials
+*/
 document.onkeydown = function(e){
     e = e || window.event;
     

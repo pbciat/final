@@ -10,9 +10,9 @@ pip install websockets
 
 1. 在 Terminal 執行 `server.py`:
 
-  ```bash
-  python server.py
-  ```
+    ```bash
+    python server.py
+    ```
 
 2. 接著到 <https://pbciat.github.io/pbc-final/websocket-demo> 就可以進行實驗囉～  
 (或在本地端用瀏覽器打開 `websocket-demo/index.html`)
