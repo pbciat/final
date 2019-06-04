@@ -13,7 +13,15 @@ document.onkeydown = function(e){
     e = e || window.event;
     
     if (detect_key && ( (e.keyCode == 69 || e.keyCode == 73) || e.keyCode == 32) ) {
-        
+        // Return early if space pressed in normal blocks
+        if (['1', '2', '3', '4', '5'].indexOf(data.block) >= 0 &&
+            e.keyCode == 32) {return;};
+        // Return early if e or i pressed in interval blocks
+        if (['0', '12', '23', '34', '45'].indexOf(data.block) >= 0 &&
+            e.keyCode != 32) {return;};
+        // Always return early in testFeedback block (freeze program)
+        if (data.block == '6') {return;};
+
         // pressed left key
         if (e.keyCode == 69){   // keycode for e   i: 73
             RT = getRT();
@@ -25,25 +33,26 @@ document.onkeydown = function(e){
             RT = getRT();
             correct = (data.answer == 'right') ? 'true':'false';
             resp_feedback('left');
-        // first trial: pressed space
-        } else {
+        } 
+        // Pressed space
+        else if (e.keyCode == 32) {
             RT = -1;
             correct = 'false'
             document.getElementById("content-text").innerHTML = 'Get Ready';
-        }
+        } else { window.alert("Bug in document.onkeydown"); };
         
         // Clean up if Correct
         if (correct == 'true') {
             document.getElementById("content-text").innerHTML = '';
-        }
+        };
         
         // Print RT on browser for feed back (remove later)
         document.getElementById("rt").innerHTML = 'RT: ' + RT + 'sec';
         
         // send data to server
-        sending = {'correct': correct, 'rt': RT}
-        websocket.send(JSON.stringify(sending))
-        detect_key = false
+        sending = {'correct': correct, 'rt': RT};
+        websocket.send(JSON.stringify(sending));
+        detect_key = false;
     }
 }
 
@@ -94,6 +103,18 @@ websocket.onmessage = function (event) {
 };
 
 // Helper Functions //
+
+// block 0 processing
+function process_block0() {
+    // present button layouts: pos & DPP on left
+    document.getElementById("left-cue1").innerHTML = '';
+    document.getElementById("left-cue2").innerHTML = '民進黨';
+    document.getElementById("right-cue1").innerHTML = '';
+    document.getElementById("right-cue2").innerHTML = '國民黨';
+    
+    // present stimulus
+    write_stim()
+}
 
 // block 1 processing
 function process_block1() {
@@ -167,10 +188,10 @@ function test_feedback() {
     document.getElementById("right-cue2").innerHTML = '';
     
     // Write Political party preference
+    //document.getElementById("stimulus").innerHTML = data.content;
     document.getElementById("stimulus").innerHTML = `
-    <p id='test-feedback'></p>
+    <p id='test-feedback'>結束囉～</p>
     `;
-    
     
 }
 
