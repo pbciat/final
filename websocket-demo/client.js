@@ -44,6 +44,8 @@ document.onkeydown = function(e){
         // Clean up if Correct
         if (correct == 'true') {
             document.getElementById("content-text").innerHTML = '';
+            document.getElementById("content-img").src = '';
+            document.getElementById("content-img").style = '';
         };
         
         // Print RT on browser for feed back (remove later)
@@ -201,6 +203,7 @@ function write_stim() {
         document.getElementById("content-text").innerHTML = data.content
     } else if (data.type == 'img') {
         document.getElementById("content-img").src = data.content;
+        document.getElementById("content-img").style = 'width:200px;height: 200px;';
     } else {
         window.alert('data.type not text nor img')
     }
