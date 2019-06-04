@@ -60,7 +60,7 @@ async def experiment(websocket, path):
         ##print('Received from client:\n', sending, '\n', sep='')
 
         # hold for 1sec before next round
-        await asyncio.sleep(1)
+        #await asyncio.sleep(1)
         
         # Print final result after receiving the last trial
         if i == len(stim_lst) - 2:
