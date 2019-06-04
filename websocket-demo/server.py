@@ -8,10 +8,12 @@ def str2bool(sting):
 
 # stimulus obj
 class Stim():
-    def __init__(self, content, answer='left', block=1):
+    def __init__(self, content, cnpt_attr, answer='left', block=1):
         """
         content: str. Either a file path for image stimuls or 
                  a string for text stimulus.
+        cnpt_attr: str. Either 'c' (concept, 政黨) or 'a' (attribute, 正負向詞彙).
+                   The category that argument `content` belongs to (政黨 or 正負向詞彙).
         answer: str. 'left' or 'right'. Should the subject press
                 the key `e` ('left') or the key `i` ('right') to 
                 answer the question correctly?
@@ -21,6 +23,7 @@ class Stim():
                6: test feedback (block 3 & 5 之 RT 計算完後，給受試者的 feedback
         """
         self.content = content
+        self.cnpt_attr = cnpt_attr
         self.answer = answer
         self.block = int(block)
         self.type = 'img' if content.endswith(('.png', '.jpg')) else 'text'
@@ -35,13 +38,15 @@ class Stim():
         stim_dict = {'content': self.content,
                     'answer': self.answer,
                     'block': str(self.block),
-                     'type': self.type}
+                    'type': self.type,
+                    'cnpt_attr': self.cnpt_attr}
         return json.dumps(stim_dict)
 
 terms = ['左手食指放在 E 鍵上 右手食指放在 I 鍵上<br>按「空白鍵」開始', '真誠', '吳敦義', '厭惡', 'DPP/F.jpg', '結束囉～']
+cnpt_attrs = ['dontmatter', 'a', 'c', 'a', 'c', 'dontmatter']
 answers = ['dontmatter', 'left', 'right', 'right', 'left', 'dontmatter']
 blocks = [0, 3, 3, 3, 3, 6]
-stim_lst = [Stim(term, ans, blk) for term, ans, blk in zip(terms, answers, blocks)]
+stim_lst = [Stim(term, cnpt_attr, ans, blk) for term, cnpt_attr, ans, blk in zip(terms, cnpt_attrs, answers, blocks)]
 
 # Websockets server function
 async def experiment(websocket, path):
