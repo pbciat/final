@@ -6,23 +6,24 @@ import json
 def str2bool(sting):
     return sting.lower() in ("yes", "true", "t", "1")
 
-
 # stimulus obj
 class Stim():
     def __init__(self, content, answer='left', block=1):
         """
         content: str. Either a file path for image stimuls or 
-                 a string for text stiulus.
+                 a string for text stimulus.
         answer: str. 'left' or 'right'. Should the subject press
                 the key `e` ('left') or the key `i` ('right') to 
-                answer the question correctly.
-        block: int. 1 to 5, the experimental condition the stimulus
-               belongs to.
+                answer the question correctly?
+        block: int. Can be one of the values below:
+               1, 2, 3 ,4, 5: the block the stimulus belongs to
+               0, 12, 23, 34, 45: intervals between blocks (指導語出現的地方)
+               6: test feedback (block 3 & 5 之 RT 計算完後，給受試者的 feedback
         """
         self.content = content
         self.answer = answer
         self.block = int(block)
-        self.type = 'img' if content.endswith('.png') else 'text'
+        self.type = 'img' if (content.endswith(('.png', '.jpg')) else 'text'
         self.rt = None
         self.correct = None
 
@@ -39,7 +40,8 @@ class Stim():
 
 terms = ['左手食指放在 E 鍵上 右手食指放在 I 鍵上<br>按「空白鍵」開始', '真誠', '吳敦義', '厭惡', '蔡英文', '結束囉～']
 answers = ['dontmatter', 'left', 'right', 'right', 'left', 'dontmatter']
-stim_lst = [Stim(term, ans, 3) for term, ans in zip(terms, answers)]
+blocks = [0, 3, 3, 3, 3, 6]
+stim_lst = [Stim(term, ans, blk) for term, ans, blk in zip(terms, answers, blocks)]
 
 # Websockets server function
 async def experiment(websocket, path):
@@ -57,8 +59,8 @@ async def experiment(websocket, path):
         stim_lst[i] = sending  # Save received result
         ##print('Received from client:\n', sending, '\n', sep='')
 
-        # hold for 0.8sec before next round
-        await asyncio.sleep(0.8)
+        # hold for 1sec before next round
+        await asyncio.sleep(1)
         
         # Print final result after receiving the last trial
         if i == len(stim_lst) - 2:
