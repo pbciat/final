@@ -4,6 +4,7 @@ var detect_key = true;
 var start = new Date().getTime();
 var beep = document.getElementById("beep");  // beep.wav
 var wrong = document.getElementById("wrong");  // wrong.mp3
+var mario = document.getElementById("mario");  // mario.mp3
 
 
 /*
@@ -23,7 +24,7 @@ document.onkeydown = function(e){
         if (data.block == '6') {return;};
 
         // pressed left key
-        if (e.keyCode == 69){   // keycode for e   i: 73
+        if (e.keyCode == 69){   // keycode for e
             RT = getRT();
             correct = (data.answer == 'left') ? 'true':'false';
             resp_feedback('right');
@@ -39,23 +40,29 @@ document.onkeydown = function(e){
             RT = -1;
             correct = 'false'
             document.getElementById("content-text").innerHTML = 'Get Ready';
+            if (data.block == '0') {
+                mario.play();
+                //pause(5000);
+            }
         } else { window.alert("Bug in document.onkeydown"); };
         
         // Clean up if Correct
-        if (correct == 'true') {
-            document.getElementById("content-text").innerHTML = '';
-            document.getElementById("content-img").src = '';
-            document.getElementById("content-img").style = '';
-        };
+        if (correct == 'true') setTimeout(cleanStim, 100);
         
         // Print RT on browser for feed back (remove later)
         document.getElementById("rt").innerHTML = 'RT: ' + RT + 'sec';
         
         // send data to server
-        sending = {'correct': correct, 'rt': RT};
-        websocket.send(JSON.stringify(sending));
-        detect_key = false;
+        if (e.keyCode == 32) {setTimeout(sendData, 2400);}  // pressed space: wait for 2.4 sec
+        else {setTimeout(sendData, 900);}  // pressed e or i: wait for 0.9 sec
     }
+}
+
+// Send data
+function sendData() {
+    sending = {'correct': correct, 'rt': RT};
+    websocket.send(JSON.stringify(sending));
+    detect_key = false;
 }
 
 
@@ -67,6 +74,9 @@ answer: left
 */
 websocket.onmessage = function (event) {
     data = JSON.parse(event.data);
+
+    // Clean up previous stimulus
+    cleanStim();
 
     switch (data.block) {
         // Testing Blocks
@@ -212,9 +222,17 @@ function write_stim() {
 // Response feedback: Play different sound for correct or wrong answer
 function resp_feedback(wrongAnswer) {
     if (data.answer == wrongAnswer) {
+        cleanStim();
         document.getElementById("content-text").innerHTML = 'WRONG';
         wrong.play();
     } else beep.play();
+}
+
+// Clean up previous stimulus
+function cleanStim() {
+    document.getElementById("content-text").innerHTML = '';
+    document.getElementById("content-img").src = '';
+    document.getElementById("content-img").style = '';
 }
 
 
@@ -223,5 +241,3 @@ function getRT() {
     var timeTaken = (end - start) / 1000;
     return timeTaken
 }
-
-
