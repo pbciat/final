@@ -30,8 +30,12 @@ body {
     display:block;
 }
 
+/* 正負向 文字刺激 顏色 */
+#left-cue1, #right-cue1 {
+    color: green;
+}
+
 .cue {
     display:block;
     font-size: 0.8em;
 }
-
