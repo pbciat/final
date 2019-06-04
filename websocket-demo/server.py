@@ -23,7 +23,7 @@ class Stim():
         self.content = content
         self.answer = answer
         self.block = int(block)
-        self.type = 'img' if (content.endswith(('.png', '.jpg')) else 'text'
+        self.type = 'img' if content.endswith(('.png', '.jpg')) else 'text'
         self.rt = None
         self.correct = None
 
@@ -38,7 +38,7 @@ class Stim():
                      'type': self.type}
         return json.dumps(stim_dict)
 
-terms = ['左手食指放在 E 鍵上 右手食指放在 I 鍵上<br>按「空白鍵」開始', '真誠', '吳敦義', '厭惡', '蔡英文', '結束囉～']
+terms = ['左手食指放在 E 鍵上 右手食指放在 I 鍵上<br>按「空白鍵」開始', '真誠', '吳敦義', '厭惡', 'DPP/F.jpg', '結束囉～']
 answers = ['dontmatter', 'left', 'right', 'right', 'left', 'dontmatter']
 blocks = [0, 3, 3, 3, 3, 6]
 stim_lst = [Stim(term, ans, blk) for term, ans, blk in zip(terms, answers, blocks)]
