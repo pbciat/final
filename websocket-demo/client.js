@@ -210,7 +210,10 @@ function test_feedback() {
 // Present stimulus
 function write_stim() {
     if (data.type == 'text') {
-        document.getElementById("content-text").innerHTML = data.content
+        document.getElementById("content-text").innerHTML = data.content;
+        if (data.cnpt_attr == 'a') {
+            document.getElementById("content-text").style = 'color:green;';
+        } 
     } else if (data.type == 'img') {
         document.getElementById("content-img").src = data.content;
         document.getElementById("content-img").style = 'width:200px;height: 200px;';
@@ -224,6 +227,7 @@ function resp_feedback(wrongAnswer) {
     if (data.answer == wrongAnswer) {
         cleanStim();
         document.getElementById("content-text").innerHTML = 'WRONG';
+        document.getElementById("content-text").style = 'color:red;font-weight:bold;font-size:1.3em';
         wrong.play();
     } else beep.play();
 }
@@ -231,10 +235,10 @@ function resp_feedback(wrongAnswer) {
 // Clean up previous stimulus
 function cleanStim() {
     document.getElementById("content-text").innerHTML = '';
+    document.getElementById("content-text").style = '';
     document.getElementById("content-img").src = '';
     document.getElementById("content-img").style = '';
 }
-
 
 function getRT() {
     var end = new Date().getTime();
