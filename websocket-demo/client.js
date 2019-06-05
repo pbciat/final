@@ -40,12 +40,14 @@ document.onkeydown = function(e){
             RT = -1;
             correct = 'false'
             document.getElementById("content-text").innerHTML = 'Get Ready';
-            if (data.block == '0') {
+            if (data.block == '01') {
                 mario.play();
-                //pause(5000);
             }
         } else { window.alert("Bug in document.onkeydown"); };
         
+        // lock key
+        detect_key = false;
+
         // Clean up if Correct
         if (correct == 'true') setTimeout(cleanStim, 100);
         
@@ -62,7 +64,6 @@ document.onkeydown = function(e){
 function sendData() {
     sending = {'correct': correct, 'rt': RT};
     websocket.send(JSON.stringify(sending));
-    detect_key = false;
 }
 
 
@@ -80,33 +81,23 @@ websocket.onmessage = function (event) {
 
     switch (data.block) {
         // Testing Blocks
-        case '3':
-            process_block3(); break;
-        case '5':
-            process_block5(); break;
+        case '3': process_block3(); break;
+        case '5': process_block5(); break;
         // Pairing Blocks
-        case '1':
-            process_block1(); break;
-        case '2':
-            process_block2(); break;
-        case '4':
-            process_block4(); break;
+        case '1': process_block1(); break;
+        case '2': process_block2(); break;
+        case '4': process_block4(); break;
         // Interval Instructions
-        case '0':
-            process_block0(); break;
-        case '12':
-            process_block12(); break;
-        case '23':
-            process_block23(); break;
-        case '34':
-            process_block34(); break;
-        case '45':
-            process_block45(); break;
-        // Test Feedback
-        case '6':
-            test_feedback(); break;
-        default:
-            window.alert("Undefined block"); // error handling
+        case '01': process_block01(); break;
+        case '12': process_block12(); break;
+        case '23': process_block23(); break;
+        case '34': process_block34(); break;
+        case '45': process_block45(); break;
+        // 起始畫面 
+        case '0': process_block0(); break;        
+        // 結束畫面 (結果回饋)
+        case '6': process_block6(); break;
+        default: window.alert("Undefined block"); // error handling
     }
     
     // start timer
@@ -116,80 +107,93 @@ websocket.onmessage = function (event) {
 
 // Helper Functions //
 
-// block 0 processing
-function process_block0() {
-    // present button layouts: pos & DPP on left
-    document.getElementById("left-cue1").innerHTML = '';
-    document.getElementById("left-cue2").innerHTML = '民進黨';
-    document.getElementById("right-cue1").innerHTML = '';
-    document.getElementById("right-cue2").innerHTML = '國民黨';
-    
-    // present stimulus
-    write_stim()
-}
-
-// block 1 processing
+// Pairing Block: DPP 左;  KMT 右
 function process_block1() {
     // present button layouts: pos & DPP on left
-    document.getElementById("left-cue1").innerHTML = '';
     document.getElementById("left-cue2").innerHTML = '民進黨';
-    document.getElementById("right-cue1").innerHTML = '';
     document.getElementById("right-cue2").innerHTML = '國民黨';
-    
     // present stimulus
-    write_stim()
+    write_stim();
 }
 
-// block 2 processing
+// Pairing Block: postive 左;  negative 右
 function process_block2() {
     // present button layouts: pos & DPP on left
     document.getElementById("left-cue1").innerHTML = '正向';
-    document.getElementById("left-cue2").innerHTML = '';
     document.getElementById("right-cue1").innerHTML = '負向';
-    document.getElementById("right-cue2").innerHTML = '';
-    
     // present stimulus
     write_stim()
 }
 
-// block 3 processing
+// Testing Block: DPP 左;  KMT 右;  postive 左;  negative 右
 function process_block3() {
     // present button layouts: pos & DPP on left
     document.getElementById("left-cue1").innerHTML = '正向';
     document.getElementById("left-cue2").innerHTML = '民進黨';
     document.getElementById("right-cue1").innerHTML = '負向';
     document.getElementById("right-cue2").innerHTML = '國民黨';
-    
     // present stimulus
-    write_stim()
+    write_stim();
 }
 
-// block 4 processing
+// Pairing Block: KMT 左;  DPP 右
 function process_block4() {
-    // present button layouts: pos & DPP on left
+    // present button layouts: DPP on left
     document.getElementById("left-cue1").innerHTML = '';
     document.getElementById("left-cue2").innerHTML = '國民黨';
     document.getElementById("right-cue1").innerHTML = '';
     document.getElementById("right-cue2").innerHTML = '民進黨';
-    
     // present stimulus
     write_stim()
 }
 
-// block 5 processing
+// Testing Block: KMT 左;  DPP 右;  postive 左;  negative 右
 function process_block5() {
     // present button layouts: pos & DPP on left
     document.getElementById("left-cue1").innerHTML = '正向';
     document.getElementById("left-cue2").innerHTML = '國民黨';
     document.getElementById("right-cue1").innerHTML = '負向';
     document.getElementById("right-cue2").innerHTML = '民進黨';
-    
     // present stimulus
     write_stim()
 }
 
-// Test feedback
-function test_feedback() {
+// Interval Blocks
+function process_block01() {
+    document.getElementById("left-cue2").innerHTML = '民進黨';
+    document.getElementById("right-cue2").innerHTML = '國民黨';
+    write_instuctions('民進黨', '國民黨');
+};
+function process_block12() {};
+function process_block23() {};
+function process_block34() {};
+function process_block45() {};
+
+function write_instuctions(left, right) {
+    document.getElementById("content-text").innerHTML = `
+    <p>注意上方，<b>類別標籤已改變</b> ！！！</p>
+
+    呈現的項目屬於<b>${left}</b>：按 E 鍵<br>
+    呈現的項目屬於<b>${right}</b>：按 I 鍵
+
+    <p>按<b>空白鍵</b>開始</p>
+    `;
+}
+
+
+// 開始畫面
+function process_block0() {
+    // present button layouts: 
+    document.getElementById("left-cue1").innerHTML = '';
+    document.getElementById("left-cue2").innerHTML = '民進黨';
+    document.getElementById("right-cue1").innerHTML = '';
+    document.getElementById("right-cue2").innerHTML = '國民黨';
+    // present stimulus
+    write_stim()
+}
+
+// 結束畫面
+function process_block6() {
     if (data.content == 'KMT') {}
     else {};
 
@@ -201,10 +205,9 @@ function test_feedback() {
     
     // Write Political party preference
     //document.getElementById("stimulus").innerHTML = data.content;
-    document.getElementById("stimulus").innerHTML = `
+    document.getElementById("content-text").innerHTML = `
     <p id='test-feedback'>結束囉～</p>
     `;
-    
 }
 
 // Present stimulus

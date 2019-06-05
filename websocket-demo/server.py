@@ -17,27 +17,28 @@ class Stim():
         answer: str. 'left' or 'right'. Should the subject press
                 the key `e` ('left') or the key `i` ('right') to 
                 answer the question correctly?
-        block: int. Can be one of the values below:
+        block: int or str. Can be one of the values below:
                1, 2, 3 ,4, 5: the block the stimulus belongs to
-               0, 12, 23, 34, 45: intervals between blocks (指導語出現的地方)
+               01, 12, 23, 34, 45: intervals between blocks (指導語出現的地方)
+               0: 起始畫面
                6: test feedback (block 3 & 5 之 RT 計算完後，給受試者的 feedback
         """
         self.content = content
         self.cnpt_attr = cnpt_attr
         self.answer = answer
-        self.block = int(block)
+        self.block = str(block)
         self.type = 'img' if content.endswith(('.png', '.jpg')) else 'text'
         self.rt = None
         self.correct = None
 
     def __str__(self):
-        return "content: %s\nanswer: %s\nblock: %1d\ntype: %s\nrt: %s\ncorrect: %s" % \
+        return "content: %s\nanswer: %s\nblock: %s\ntype: %s\nrt: %s\ncorrect: %s" % \
                (self.content, self.answer, self.block, self.type, self.rt, self.correct)
     
     def toJSON(self):
         stim_dict = {'content': self.content,
                     'answer': self.answer,
-                    'block': str(self.block),
+                    'block': self.block,
                     'type': self.type,
                     'cnpt_attr': self.cnpt_attr}
         return json.dumps(stim_dict)
@@ -45,7 +46,7 @@ class Stim():
 terms = ['左手食指放在 E 鍵上 右手食指放在 I 鍵上<br>按「空白鍵」開始', '真誠', '吳敦義', '厭惡', 'DPP/F.jpg', '結束囉～']
 cnpt_attrs = ['dontmatter', 'a', 'c', 'a', 'c', 'dontmatter']
 answers = ['dontmatter', 'left', 'right', 'right', 'left', 'dontmatter']
-blocks = [0, 3, 3, 3, 3, 6]
+blocks = ['01', 3, 3, 3, 3, 6]
 stim_lst = [Stim(term, cnpt_attr, ans, blk) for term, cnpt_attr, ans, blk in zip(terms, cnpt_attrs, answers, blocks)]
 
 # Websockets server function
