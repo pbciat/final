@@ -112,9 +112,9 @@ websocket.onmessage = function (event) {
 function process_block0() {
     // present button layouts: 
     document.getElementById("left-cue1").innerHTML = '';
-    document.getElementById("left-cue2").innerHTML = '民進黨';
+    document.getElementById("left-cue2").innerHTML = '';
     document.getElementById("right-cue1").innerHTML = '';
-    document.getElementById("right-cue2").innerHTML = '國民黨';
+    document.getElementById("right-cue2").innerHTML = '';
     // Beginning screen
     document.getElementById("content-text").innerHTML = `
     <p>誠實包子 開始畫面</p>
