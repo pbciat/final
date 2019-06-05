@@ -42,8 +42,8 @@ class Stim():
                     'cnpt_attr': self.cnpt_attr}
         return json.dumps(stim_dict)
 
-terms = [' ', '左手食指放在 E 鍵上 右手食指放在 I 鍵上<br>按「空白鍵」開始', '真誠', '吳敦義', '厭惡', 'DPP/F.jpg', '結束囉～']
-cnpt_attrs = ['dontmatter', 'dontmatter', 'a', 'c', 'a', 'c', 'dontmatter']
+terms = ['左手食指放在 E 鍵上 右手食指放在 I 鍵上<br>按「空白鍵」開始', '真誠', '吳敦義', '厭惡', 'DPP/F.jpg', '結束囉～']
+cnpt_attrs = ['dontmatter', 'a', 'c', 'a', 'c', 'dontmatter']
 answers = ['dontmatter', 'left', 'right', 'right', 'left', 'dontmatter']
 blocks = [0, 3, 3, 3, 3, 6]
 stim_lst = [Stim(term, cnpt_attr, ans, blk) for term, cnpt_attr, ans, blk in zip(terms, cnpt_attrs, answers, blocks)]
