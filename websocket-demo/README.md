@@ -1,6 +1,8 @@
 # 網頁 IAT Demo
 
-## 安裝
+## Dependencies
+
+需使用 `Python 3.5+`，並且安裝 [`websockets`](https://websockets.readthedocs.io/) 套件:
 
 ```bash
 pip install websockets
@@ -8,13 +10,25 @@ pip install websockets
 
 ## 執行
 
-1. 在 Terminal 執行 `server.py`:
+### Mac or Linux
+
+1. 在 Terminal 執行下方指令：
 
     ```bash
-    python server.py
+    curl -L https://bit.ly/2ME6NAS | python3
     ```
 
-2. 接著到 <https://pbciat.github.io/pbc-final/websocket-demo> 就可以進行實驗囉～  
-(或在本地端用瀏覽器打開 `index.html`)
+2. 前往 https://pbciat.github.io/pbc-final/websocket-demo/
 
-  在 IAT 跑完的時候，Terminal 裡面會印出 browser 和 Python (server) 溝通的內容。
+### Windows
+
+1. 下載 [server.py](https://pbciat.github.io/pbc-final/websocket-demo/server.py)
+
+2. 在命令提示字元執行 `server.py`：
+    
+    ```bash
+    python C:\<path>\server.py
+    ```
+
+3. 前往 https://pbciat.github.io/pbc-final/websocket-demo/
+
