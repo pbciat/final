@@ -17,11 +17,11 @@ document.onkeydown = function(e){
         // Return early if space pressed in normal blocks
         if (['1', '2', '3', '4', '5'].indexOf(data.block) >= 0 &&
             e.keyCode == 32) {return;};
-        // Return early if e or i pressed in begining or interval blocks
+        // Return early if e or i pressed in interval blocks
         if (['0', '01', '12', '23', '34', '45'].indexOf(data.block) >= 0 &&
             e.keyCode != 32) {return;};
-        // Always return early in testFeedback block (freeze program)
-        if (data.block = '6') {return;};
+        // Always return early in begining or testFeedback block (freeze program)
+        if (['6'].indexOf(data.block) >= 0) {return;};
 
         // pressed left key
         if (e.keyCode == 69){   // keycode for e
@@ -40,7 +40,7 @@ document.onkeydown = function(e){
             RT = -1;
             correct = 'false'
             document.getElementById("content-text").innerHTML = 'Get Ready';
-            if (data.block == '01') {
+            if (data.block == '0') {
                 mario.play();
             }
         } else { window.alert("Bug in document.onkeydown"); };
@@ -78,6 +78,7 @@ websocket.onmessage = function (event) {
 
     // Clean up previous stimulus
     cleanStim();
+    cleanCues();
 
     switch (data.block) {
         // Testing Blocks
@@ -180,7 +181,6 @@ function write_instuctions(left, right) {
     `;
 }
 
-
 // 開始畫面
 function process_block0() {
     // present button layouts: 
@@ -188,8 +188,12 @@ function process_block0() {
     document.getElementById("left-cue2").innerHTML = '民進黨';
     document.getElementById("right-cue1").innerHTML = '';
     document.getElementById("right-cue2").innerHTML = '國民黨';
-    // present stimulus
-    write_stim()
+    // Beginning screen
+    document.getElementById("content-text").innerHTML = `
+    <p>誠實包子</p>
+
+    <p>按<b>空白鍵</b>開始</p>
+    `;
 }
 
 // 結束畫面
@@ -198,10 +202,7 @@ function process_block6() {
     else {};
 
     // Clear all cues
-    document.getElementById("left-cue1").innerHTML = '';
-    document.getElementById("left-cue2").innerHTML = '';
-    document.getElementById("right-cue1").innerHTML = '';
-    document.getElementById("right-cue2").innerHTML = '';
+    cleanCues();
     
     // Write Political party preference
     //document.getElementById("stimulus").innerHTML = data.content;
@@ -241,6 +242,14 @@ function cleanStim() {
     document.getElementById("content-text").style = '';
     document.getElementById("content-img").src = '';
     document.getElementById("content-img").style = '';
+}
+
+// Clean up previous cues
+function cleanCues() {
+    document.getElementById("left-cue1").innerHTML = '';
+    document.getElementById("left-cue2").innerHTML = '';
+    document.getElementById("right-cue1").innerHTML = '';
+    document.getElementById("right-cue2").innerHTML = '';
 }
 
 function getRT() {
