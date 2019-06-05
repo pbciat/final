@@ -18,10 +18,10 @@ document.onkeydown = function(e){
         if (['1', '2', '3', '4', '5'].indexOf(data.block) >= 0 &&
             e.keyCode == 32) {return;};
         // Return early if e or i pressed in interval blocks
-        if (['0', '12', '23', '34', '45'].indexOf(data.block) >= 0 &&
+        if (['01', '12', '23', '34', '45'].indexOf(data.block) >= 0 &&
             e.keyCode != 32) {return;};
-        // Always return early in testFeedback block (freeze program)
-        if (data.block == '6') {return;};
+        // Always return early in begining or testFeedback block (freeze program)
+        if (['0', '6'].indexOf(data.block) >= 0) {return;};
 
         // pressed left key
         if (e.keyCode == 69){   // keycode for e
