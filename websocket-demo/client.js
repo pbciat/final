@@ -192,8 +192,15 @@ function process_block6() {
 function process_block01() {
     document.getElementById("left-cue2").innerHTML = '民進黨';
     document.getElementById("right-cue2").innerHTML = '國民黨';
-    write_instuctions('民進黨', '國民黨', '', '');
+    // Write instructions
+    document.getElementById("content-text").innerHTML = `
+    <p>注意上方的<b>類別標籤</b> ！！！</p>
+    呈現的項目屬於<b>${left}</b>${left2}：按 E 鍵<br>
+    呈現的項目屬於<b>${right}</b>${right2}：按 I 鍵
+    <p>按<b>空白鍵</b>開始</p>
+    `;
 };
+
 function process_block12() {
     document.getElementById("left-cue1").innerHTML = '正面';
     document.getElementById("right-cue1").innerHTML = '負面';
