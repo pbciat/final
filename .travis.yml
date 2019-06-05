@@ -1,0 +1,4 @@
+language: minimal
+
+after_success:
+  - bash push.sh
