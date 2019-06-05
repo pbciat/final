@@ -53,8 +53,8 @@ stim_lst = [Stim(term, cnpt_attr, ans, blk) for term, cnpt_attr, ans, blk in zip
 """
 DPP_list = ["DPP/A.png", "DPP/B.jpg", "DPP/C.jpg", "DPP/D.jpg", "DPP/E.jpg", "DPP/F.jpg", "DPP/G.jpg", "DPP/H.jpg", "DPP/I.jpg", "DPP/J.jpg"]
 KMT_list = ["KMT/A.png", "KMT/B.jpg", "KMT/C.jpg", "KMT/D.jpg", "KMT/E.jpg", "KMT/F.jpg", "KMT/G.jpg", "KMT/H.jpg", "KMT/I.png", "KMT/J.jpg"]
-positive_list = ["讚","棒","好","優秀","了不起","卓越","進步","開明","友善", "聰明"]
-negative_list = ["爛","廢","遜","糟糕","拙劣","黑箱","退步","惡劣","獨裁", "愚蠢"]
+positive_list = ["真誠","卓越","進步","開明","友善","大方","機智","愛台","清廉", "勤政"]
+negative_list = ["虛偽","拙劣","退步","獨裁","惡劣","小氣","愚昧","賣台","貪汙", "怠惰"]
 left_ans = ['left']*10
 right_ans = ['right']*10
 cnpts = ['c']*10
