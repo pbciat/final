@@ -106,7 +106,21 @@ websocket.onmessage = function (event) {
     detect_key = true
 };
 
-// Helper Functions //
+///////////////////////////// Helper Functions /////////////////////////////
+
+// 開始畫面
+function process_block0() {
+    // present button layouts: 
+    document.getElementById("left-cue1").innerHTML = '';
+    document.getElementById("left-cue2").innerHTML = '民進黨';
+    document.getElementById("right-cue1").innerHTML = '';
+    document.getElementById("right-cue2").innerHTML = '國民黨';
+    // Beginning screen
+    document.getElementById("content-text").innerHTML = `
+    <p>誠實包子 開始畫面</p>
+    <p>按<b>空白鍵</b>開始</p>
+    `;
+}
 
 // Pairing Block: DPP 左;  KMT 右
 function process_block1() {
@@ -120,8 +134,8 @@ function process_block1() {
 // Pairing Block: postive 左;  negative 右
 function process_block2() {
     // present button layouts: pos & DPP on left
-    document.getElementById("left-cue1").innerHTML = '正向';
-    document.getElementById("right-cue1").innerHTML = '負向';
+    document.getElementById("left-cue1").innerHTML = '正面';
+    document.getElementById("right-cue1").innerHTML = '負面';
     // present stimulus
     write_stim()
 }
@@ -129,9 +143,9 @@ function process_block2() {
 // Testing Block: DPP 左;  KMT 右;  postive 左;  negative 右
 function process_block3() {
     // present button layouts: pos & DPP on left
-    document.getElementById("left-cue1").innerHTML = '正向';
+    document.getElementById("left-cue1").innerHTML = '正面';
     document.getElementById("left-cue2").innerHTML = '民進黨';
-    document.getElementById("right-cue1").innerHTML = '負向';
+    document.getElementById("right-cue1").innerHTML = '負面';
     document.getElementById("right-cue2").innerHTML = '國民黨';
     // present stimulus
     write_stim();
@@ -151,49 +165,12 @@ function process_block4() {
 // Testing Block: KMT 左;  DPP 右;  postive 左;  negative 右
 function process_block5() {
     // present button layouts: pos & DPP on left
-    document.getElementById("left-cue1").innerHTML = '正向';
+    document.getElementById("left-cue1").innerHTML = '正面';
     document.getElementById("left-cue2").innerHTML = '國民黨';
-    document.getElementById("right-cue1").innerHTML = '負向';
+    document.getElementById("right-cue1").innerHTML = '負面';
     document.getElementById("right-cue2").innerHTML = '民進黨';
     // present stimulus
     write_stim()
-}
-
-// Interval Blocks
-function process_block01() {
-    document.getElementById("left-cue2").innerHTML = '民進黨';
-    document.getElementById("right-cue2").innerHTML = '國民黨';
-    write_instuctions('民進黨', '國民黨');
-};
-function process_block12() {};
-function process_block23() {};
-function process_block34() {};
-function process_block45() {};
-
-function write_instuctions(left, right) {
-    document.getElementById("content-text").innerHTML = `
-    <p>注意上方，<b>類別標籤已改變</b> ！！！</p>
-
-    呈現的項目屬於<b>${left}</b>：按 E 鍵<br>
-    呈現的項目屬於<b>${right}</b>：按 I 鍵
-
-    <p>按<b>空白鍵</b>開始</p>
-    `;
-}
-
-// 開始畫面
-function process_block0() {
-    // present button layouts: 
-    document.getElementById("left-cue1").innerHTML = '';
-    document.getElementById("left-cue2").innerHTML = '民進黨';
-    document.getElementById("right-cue1").innerHTML = '';
-    document.getElementById("right-cue2").innerHTML = '國民黨';
-    // Beginning screen
-    document.getElementById("content-text").innerHTML = `
-    <p>誠實包子</p>
-
-    <p>按<b>空白鍵</b>開始</p>
-    `;
 }
 
 // 結束畫面
@@ -208,6 +185,48 @@ function process_block6() {
     //document.getElementById("stimulus").innerHTML = data.content;
     document.getElementById("content-text").innerHTML = `
     <p id='test-feedback'>結束囉～</p>
+    `;
+}
+
+// Interval Blocks
+function process_block01() {
+    document.getElementById("left-cue2").innerHTML = '民進黨';
+    document.getElementById("right-cue2").innerHTML = '國民黨';
+    write_instuctions('民進黨', '國民黨', '', '');
+};
+function process_block12() {
+    document.getElementById("left-cue1").innerHTML = '正面';
+    document.getElementById("right-cue1").innerHTML = '負面';
+    write_instuctions('正面', '負面', '', '');
+};
+function process_block23() {
+    document.getElementById("left-cue1").innerHTML = '正面';
+    document.getElementById("right-cue1").innerHTML = '負面';
+    document.getElementById("left-cue2").innerHTML = '民進黨';
+    document.getElementById("right-cue2").innerHTML = '國民黨';
+    write_instuctions('正面', '負面', '或<b>民進黨</b>', '或<b>國民黨</b>');
+};
+function process_block34() {
+    document.getElementById("left-cue2").innerHTML = '國民黨';
+    document.getElementById("right-cue2").innerHTML = '民進黨';
+    write_instuctions('國民黨', '民進黨', '', '');
+};
+function process_block45() {
+    document.getElementById("left-cue1").innerHTML = '正面';
+    document.getElementById("right-cue1").innerHTML = '負面';
+    document.getElementById("left-cue2").innerHTML = '國民黨';
+    document.getElementById("right-cue2").innerHTML = '民進黨';
+    write_instuctions('正面', '負面', '或<b>國民黨</b>', '或<b>民進黨</b>');
+};
+
+function write_instuctions(left, right, left2, right2) {
+    document.getElementById("content-text").innerHTML = `
+    <p>注意上方，<b>類別標籤已改變</b> ！！！</p>
+
+    呈現的項目屬於<b>${left}</b>${left2}：按 E 鍵<br>
+    呈現的項目屬於<b>${right}</b>${right2}：按 I 鍵
+
+    <p>按<b>空白鍵</b>開始</p>
     `;
 }
 
