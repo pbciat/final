@@ -26,7 +26,7 @@ cd websocket-demo
 # Compile client.js
 curl -X POST -s --data-urlencode 'input@client.js' https://javascript-minifier.com/raw > client.min.js && rm client.js && mv client.min.js client.js
 
-printf "server.py\n.DS_Store\n" > .gitignore
+printf "server.py\nclientjs-design.png\n.DS_Store\n" > .gitignore
 commit_website_files
 upload_files
 

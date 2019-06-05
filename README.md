@@ -4,7 +4,10 @@
 
 ## Client-side Design
 
-![clientjs-design.svg](websocket-demo/clientjs-design.svg)
+- 每個數字對應到 1 種 block
+- 每種 block 有一個 JS 函數處理 (決定如何呈現 `server.py` 傳來的 `Stim` obj)
+
+![clientjs-design.svg](websocket-demo/clientjs-design.png)
 
 
 ## Dependencies
