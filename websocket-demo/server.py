@@ -91,14 +91,15 @@ for i in range(10):
 	block5_stim_list.append(block5_attr_list[i])
 	block5_stim_list.append(block5_cnpt_list[i])
     
-block0_1 = [Stim("左手食指放在 E 鍵上 右手食指放在 I 鍵上<br>按「空白鍵」開始", "dontmatter", "dontmatter", 0)]
-block1_1 = [Stim("Part1<br>E:DPP I:KMT", "dontmatter", "dontmatter", "01")]
-block2_1 = [Stim("Part2<br>E:positive I:negative", "dontmatter", "dontmatter", 12)]
-block3_1 = [Stim("Part3<br>E:DPP&positive I:KMT&negative", "dontmatter", "dontmatter", 23)]
-block4_1 = [Stim("Part4<br>E:KMT I:DPP", "dontmatter", "dontmatter", 34)]
-block5_1 = [Stim("Part5<br>E:KMT&positive I:DPP&negative", "dontmatter", "dontmatter", 45)]
+#block0_1 = [Stim("左手食指放在 E 鍵上 右手食指放在 I 鍵上<br>按「空白鍵」開始", "dontmatter", "dontmatter", 0)]
+block1_1 = [Stim("", "dontmatter", "dontmatter", "01")]
+block2_1 = [Stim("", "dontmatter", "dontmatter", 12)]
+block3_1 = [Stim("", "dontmatter", "dontmatter", 23)]
+block4_1 = [Stim("", "dontmatter", "dontmatter", 34)]
+block5_1 = [Stim("", "dontmatter", "dontmatter", 45)]
     
-stim_lst = block0_1 + block1_1 + block1_stim_list + block2_1 + block2_stim_list + block3_1 + block3_stim_list + block4_1 + block4_stim_list + block5_1 + block5_stim_list
+#stim_lst = block0_1 + block1_1 + block1_stim_list + block2_1 + block2_stim_list + block3_1 + block3_stim_list + block4_1 + block4_stim_list + block5_1 + block5_stim_list
+stim_lst = block1_1 + block1_stim_list + block2_1 + block2_stim_list + block3_1 + block3_stim_list + block4_1 + block4_stim_list + block5_1 + block5_stim_list
 
 # Websockets server function
 async def experiment(websocket, path):
