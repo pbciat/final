@@ -1,8 +1,8 @@
+[![Build Status](https://travis-ci.org/pbciat/pbc-final.svg?branch=master)](https://travis-ci.org/pbciat/pbc-final)
+
 # IAT: DPP vs. KMT
 
-## 使用
-
-### Dependencies
+## Dependencies
 
 需使用 `Python 3.5+`，並且安裝 [`websockets`](https://websockets.readthedocs.io/) 套件:
 
@@ -10,9 +10,9 @@
 pip install websockets
 ```
 
-### 執行
+## 執行
 
-#### Mac or Linux
+### Mac or Linux
 
 1. 在 Terminal 執行下方指令：
 
@@ -20,9 +20,9 @@ pip install websockets
     curl -L https://bit.ly/2ME6NAS | python3
     ```
 
-2. 前往 https://pbciat.github.io/pbc-final/websocket-demo/
+2. 前往 https://pbciat.github.io
 
-#### Windows
+### Windows
 
 1. 下載 [server.py](https://pbciat.github.io/pbc-final/websocket-demo/server.py)
 
@@ -32,7 +32,7 @@ pip install websockets
     python C:\<path>\server.py
     ```
 
-3. 前往 https://pbciat.github.io/pbc-final/websocket-demo/
+3. 前往 https://pbciat.github.io
 
 ## News
 
