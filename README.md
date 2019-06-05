@@ -2,6 +2,11 @@
 
 # IAT: DPP vs. KMT
 
+## Client-side Design
+
+![clientjs-design.svg](websocket-demo/clientjs-design.svg)
+
+
 ## Dependencies
 
 需使用 `Python 3.5+`，並且安裝 [`websockets`](https://websockets.readthedocs.io/) 套件:
