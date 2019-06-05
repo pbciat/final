@@ -39,7 +39,9 @@ document.onkeydown = function(e){
         else if (e.keyCode == 32) {
             RT = -1;
             correct = 'false'
-            document.getElementById("content-text").innerHTML = 'Get Ready';
+            if (data.block != '0') {
+                document.getElementById("content-text").innerHTML = 'Get Ready';
+            };
             if (data.block == '0') {
                 mario.play();
             }
@@ -195,8 +197,8 @@ function process_block01() {
     // Write instructions
     document.getElementById("content-text").innerHTML = `
     <p>注意上方的<b>類別標籤</b> ！！！</p>
-    呈現的項目屬於<b>${left}</b>${left2}：按 E 鍵<br>
-    呈現的項目屬於<b>${right}</b>${right2}：按 I 鍵
+    呈現的項目屬於<b>民進黨</b>：按 E 鍵<br>
+    呈現的項目屬於<b>國民黨</b>：按 I 鍵
     <p>按<b>空白鍵</b>開始</p>
     `;
 };
