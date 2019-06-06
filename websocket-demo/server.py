@@ -124,6 +124,7 @@ async def experiment(websocket, path):
                 print(stim)
                 print()
         """
+    
         if sending.block == "3" or sending.block == "5":
             if stim_lst[i - 1].block == "23" or stim_lst[i - 1].block == "45":
                 DPPcount = 0
@@ -153,10 +154,10 @@ async def experiment(websocket, path):
                     KMT_rt_list.append(round(KMT_rt/KMTcount, 4))
                     if wrongcount >= 16 and valid == 1:
                         valid = 0
-                        stim_lst[len(stim_lst) - 1].content == "Too many wrong answers"
+                        stim_lst[len(stim_lst) - 1].content == "tooMany"
                 else:
                     valid = 0
-                    stim_lst[len(stim_lst) - 1].content == "In valid"
+                    stim_lst[len(stim_lst) - 1].content == "allWrong"
         
         if i == len(stim_lst) - 2 and valid == 1 and sending.block == "5":
             block3_rt = DPP_rt_list[0] + KMT_rt_list[0]
@@ -166,7 +167,7 @@ async def experiment(websocket, path):
             elif block3_rt < block5_rt:
                 stim_lst[len(stim_lst) - 1].content == "KMT"
             else:
-                stim_lst[len(stim_lst) - 1].content == "Neutral"
+                stim_lst[len(stim_lst) - 1].content == "neutral"
 
 start_server = websockets.serve(experiment, 'localhost', 8765)        
 
