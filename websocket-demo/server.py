@@ -123,36 +123,39 @@ async def experiment(websocket, path):
                 print(stim)
                 print()
         """
-        if i == 44 or i == 106:
-            DPPcount = 0
-            KMTcount = 0
-            DPP_rt = 0
-            KMT_rt = 0
-            wrongcount = 0
+        if sending.block == "3" or sending.block == "5":
+            if stim_lst[i - 1].block == "23" or stim_lst[i - 1].block == "45":
+                DPPcount = 0
+                KMTcount = 0
+                DPP_rt = 0
+                KMT_rt = 0
+                wrongcount = 0
+                totalcount = 0
+                practice = 0
         
-        if i in range(52, 84) or i in range(114, 146):
-            if sending.correct == True and sending.cnpt_attr == 'c':
-                if sending.content in DPP_list:
-                    DPPcount += 1
-                    DPP_rt += sending.rt
-                else:
-                    KMTcount += 1
-                    KMT_rt += sending.rt
-            elif sending.correct == False:
-                wrongcount += 1
-            #print(DPPcount, KMTcount, DPP_rt, KMT_rt, sending.correct, sending.cnpt_attr, sending.content)
+        if sending.block == "3" or sending.block == "5":
+            practice += 1
+            totalcount += 1
+            if practice > 8:
+                if sending.correct == True and sending.cnpt_attr == 'c':
+                    if sending.content in DPP_list:
+                        DPPcount += 1
+                        DPP_rt += sending.rt
+                    else:
+                        KMTcount += 1
+                        KMT_rt += sending.rt
+                elif sending.correct == False:
+                    wrongcount += 1
+            if totalcount == 40:
+                DPP_rt_list.append(round(DPP_rt/DPPcount, 4))
+                KMT_rt_list.append(round(KMT_rt/KMTcount, 4))
+                if wrongcount >= 16 and valid == 1:
+                    valid = 0
+                    stim_lst += [Stim("Too many wrong answers", "dontmatter", "dontmatter", 6)]
         
-        if i == 83 or i == 145:
-            DPP_rt_list.append(round(DPP_rt/DPPcount, 4))
-            KMT_rt_list.append(round(KMT_rt/KMTcount, 4))
-            if wrongcount >= 16 and valid == 1:
-                valid = 0
-                stim_lst += [Stim("Too many wrong answers", "dontmatter", "dontmatter", 6)]
-        
-        if i == 145 and valid == 1:
+        if i == len(stim_lst) - 1 and valid == 1 and sending.block == "5":
             block3_rt = DPP_rt_list[0] + KMT_rt_list[0]
             block5_rt = DPP_rt_list[1] + KMT_rt_list[1]
-            
             if block3_rt > block5_rt:
                 stim_lst += [Stim("DPP", "dontmatter", "dontmatter", 6)]
             elif block3_rt < block5_rt:
