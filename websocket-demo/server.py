@@ -147,7 +147,7 @@ async def experiment(websocket, path):
                         KMT_rt += sending.rt
                 elif sending.correct == False:
                     wrongcount += 1
-            if totalcount == 40
+            if totalcount == 40:
                 if DPPcount != 0 and KMTcount != 0:
                     DPP_rt_list.append(round(DPP_rt/DPPcount, 4))
                     KMT_rt_list.append(round(KMT_rt/KMTcount, 4))
