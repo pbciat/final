@@ -177,16 +177,21 @@ function process_block5() {
 
 // 結束畫面
 function process_block6() {
-    if (data.content == 'KMT') {}
-    else {};
-
     // Clear all cues
     cleanCues();
+
+    switch (data.content) {
+        case 'KMT': var resp = 'KMT'; break;
+        case 'DPP': var resp = 'DPP'; break;
+        case 'neutral': var resp = 'neu'; break;
+        case 'allWrong': var resp = 'allWrong'; break;
+        case 'tooMany': var resp = 'tooMany'; break;
+        default: window.alert("Undefined block"); // error handling
     
     // Write Political party preference
     //document.getElementById("stimulus").innerHTML = data.content;
     document.getElementById("content-text").innerHTML = `
-    <p id='test-feedback'>結束囉～</p>
+    <p id='test-feedback'>${resp}</p>
     `;
 }
 
