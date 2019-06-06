@@ -53,9 +53,6 @@ document.onkeydown = function(e){
         // Clean up if Correct
         if (correct == 'true') setTimeout(cleanStim, 100);
         
-        // Print RT on browser for feed back (remove later)
-        document.getElementById("rt").innerHTML = 'RT: ' + RT + 'sec';
-        
         // send data to server
         if (e.keyCode == 32) {setTimeout(sendData, 2400);}  // pressed space: wait for 2.4 sec
         else {setTimeout(sendData, 300);}  // pressed e or i: wait for 0.5 sec
@@ -180,13 +177,15 @@ function process_block6() {
     // Clear all cues
     cleanCues();
 
+    var resp = 'undefined';
     switch (data.content) {
-        case 'KMT': var resp = 'KMT'; break;
-        case 'DPP': var resp = 'DPP'; break;
-        case 'neutral': var resp = 'neu'; break;
-        case 'allWrong': var resp = 'allWrong'; break;
-        case 'tooMany': var resp = 'tooMany'; break;
+        case 'KMT': resp = 'KMT'; break;
+        case 'DPP': resp = 'DPP'; break;
+        case 'neutral': resp = 'neu'; break;
+        case 'allWrong': resp = 'allWrong'; break;
+        case 'tooMany': resp = 'tooMany'; break;
         default: window.alert("Undefined block"); // error handling
+    }
     
     // Write Political party preference
     //document.getElementById("stimulus").innerHTML = data.content;
