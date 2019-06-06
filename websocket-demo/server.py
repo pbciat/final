@@ -150,7 +150,7 @@ async def experiment(websocket, path):
             
             if block3_rt > block5_rt:
                 stim_lst += [Stim("DPP", "dontmatter", "dontmatter", 6)]
-            elif block3_rt <block5_rt:
+            elif block3_rt < block5_rt:
                 stim_lst += [Stim("KMT", "dontmatter", "dontmatter", 6)]
             else:
                 stim_lst += [Stim("Neutral", "dontmatter", "dontmatter", 6)]
