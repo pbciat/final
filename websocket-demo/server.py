@@ -149,11 +149,11 @@ async def experiment(websocket, path):
             block5_rt = DPP_rt_list[1] + KMT_rt_list[1]
             
             if block3_rt > block5_rt:
-                stim_lst += [Stim("綠!", "dontmatter", "dontmatter", 6)]
+                stim_lst += [Stim("DPP", "dontmatter", "dontmatter", 6)]
             elif block3_rt <block5_rt:
-                stim_lst += [Stim("藍!", "dontmatter", "dontmatter", 6)]
+                stim_lst += [Stim("KMT", "dontmatter", "dontmatter", 6)]
             else:
-                stim_lst += [Stim("中立!", "dontmatter", "dontmatter", 6)]
+                stim_lst += [Stim("Neutral", "dontmatter", "dontmatter", 6)]
 
 start_server = websockets.serve(experiment, 'localhost', 8765)        
 
