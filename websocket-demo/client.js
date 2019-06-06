@@ -58,7 +58,7 @@ document.onkeydown = function(e){
         
         // send data to server
         if (e.keyCode == 32) {setTimeout(sendData, 2400);}  // pressed space: wait for 2.4 sec
-        else {setTimeout(sendData, 900);}  // pressed e or i: wait for 0.9 sec
+        else {setTimeout(sendData, 300);}  // pressed e or i: wait for 0.5 sec
     }
 }
 
