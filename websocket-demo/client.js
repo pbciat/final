@@ -184,7 +184,7 @@ function process_block6() {
         case 'neutral': resp = 'neu'; break;
         case 'allWrong': resp = 'allWrong'; break;
         case 'tooMany': resp = 'tooMany'; break;
-        default: window.alert("Undefined block"); // error handling
+        default: window.alert("Block 6 content undefined!!!"); // error handling
     }
     
     // Write Political party preference
