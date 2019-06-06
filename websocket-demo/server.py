@@ -59,6 +59,8 @@ block4 = [4]*10
 block5 = [5]*10
 DPP_rt_list = []
 KMT_rt_list = []
+block3_rt = 0
+block5_rt = 0
 
 block1_stim_list = [Stim(term, cnpt_attr, ans, blk) for term, cnpt_attr, ans, blk in zip(DPP_list, cnpts, left_ans, block1)] + [Stim(term, cnpt_attr, ans, blk) for term, cnpt_attr, ans, blk in zip(KMT_list, cnpts, right_ans, block1)]
 block2_stim_list = [Stim(term, cnpt_attr, ans, blk) for term, cnpt_attr, ans, blk in zip(positive_list, attrs, left_ans, block2)] + [Stim(term, cnpt_attr, ans, blk) for term, cnpt_attr, ans, blk in zip(negative_list, attrs, right_ans, block2)]
@@ -95,6 +97,7 @@ stim_lst = block0_1 + block1_1 + block1_stim_list + block2_1 + block2_stim_list 
 
 # Websockets server function
 async def experiment(websocket, path):
+    global stim_lst
     for i in range(len(stim_lst)):
         # Send stimulus to client
         sending = stim_lst[i]
@@ -111,35 +114,47 @@ async def experiment(websocket, path):
 
         # hold for 1sec before next round
         #await asyncio.sleep(1)
-        
+        """
         # Print final result after receiving the last trial
         if i == len(stim_lst) - 2:
             print('Printing results ...')
             for stim in stim_lst:
                 print(stim)
                 print()
-"""
+        """
         if i == 44 or i == 106:
             DPPcount = 0
             KMTcount = 0
             DPP_rt = 0
             KMT_rt = 0
-        if i in range(44, 84) or i in range(106, 146):
-            for stim in stim_lst:
-                if stim.correct == 'correct' and cnpt_attr == 'c':
-                    if stim.content in DPP_list:
-                        DPPcount += 1
-                        DPP_rt += stim.rt
-                    else:
-                        KMTcount += 1
-                        KMT_rt += stim.rt
-                elif stim.correct == 'wrong':
-                     wrongcount += 1
+        
+        if i in range(52, 84) or i in range(114, 146):
+            if sending.correct == True and sending.cnpt_attr == 'c':
+                if sending.content in DPP_list:
+                    DPPcount += 1
+                    DPP_rt += sending.rt
+                else:
+                    KMTcount += 1
+                    KMT_rt += sending.rt
+            elif sending.correct == 'wrong':
+                wrongcount += 1
+            #print(DPPcount, KMTcount, DPP_rt, KMT_rt, sending.correct, sending.cnpt_attr, sending.content)
+        
         if i == 83 or i == 145:
             DPP_rt_list.append(round(DPP_rt/DPPcount, 4))
             KMT_rt_list.append(round(KMT_rt/KMTcount, 4))
-            print(DPP_rt_list, KMT_rt_list)
-"""
+        
+        if i == 145:
+            block3_rt = DPP_rt_list[0] + KMT_rt_list[0]
+            block5_rt = DPP_rt_list[1] + KMT_rt_list[1]
+            
+            if block3_rt > block5_rt:
+                stim_lst += [Stim("綠!", "dontmatter", "dontmatter", 6)]
+            elif block3_rt <block5_rt:
+                stim_lst += [Stim("藍!", "dontmatter", "dontmatter", 6)]
+            else:
+                stim_lst += [Stim("中立!", "dontmatter", "dontmatter", 6)]
+
 start_server = websockets.serve(experiment, 'localhost', 8765)        
 
 
