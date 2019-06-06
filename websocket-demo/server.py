@@ -92,8 +92,9 @@ block2_1 = [Stim("", "dontmatter", "dontmatter", 12)]
 block3_1 = [Stim("", "dontmatter", "dontmatter", 23)]
 block4_1 = [Stim("", "dontmatter", "dontmatter", 34)]
 block5_1 = [Stim("", "dontmatter", "dontmatter", 45)]
+block6_1 = [Stim("", "dontmatter", "dontmatter", 6)]
     
-stim_lst = block0_1 + block1_1 + block1_stim_list + block2_1 + block2_stim_list + block3_1 + block3_stim_list + block4_1 + block4_stim_list + block5_1 + block5_stim_list
+stim_lst = block0_1 + block1_1 + block1_stim_list + block2_1 + block2_stim_list + block3_1 + block3_stim_list + block4_1 + block4_stim_list + block5_1 + block5_stim_list + block6_1
 
 # Websockets server function
 async def experiment(websocket, path):
@@ -146,22 +147,26 @@ async def experiment(websocket, path):
                         KMT_rt += sending.rt
                 elif sending.correct == False:
                     wrongcount += 1
-            if totalcount == 40:
-                DPP_rt_list.append(round(DPP_rt/DPPcount, 4))
-                KMT_rt_list.append(round(KMT_rt/KMTcount, 4))
-                if wrongcount >= 16 and valid == 1:
+            if totalcount == 40
+                if DPPcount != 0 and KMTcount != 0:
+                    DPP_rt_list.append(round(DPP_rt/DPPcount, 4))
+                    KMT_rt_list.append(round(KMT_rt/KMTcount, 4))
+                    if wrongcount >= 16 and valid == 1:
+                        valid = 0
+                        stim_lst[len(stim_lst) - 1].content == "Too many wrong answers"
+                else:
                     valid = 0
-                    stim_lst += [Stim("Too many wrong answers", "dontmatter", "dontmatter", 6)]
+                    stim_lst[len(stim_lst) - 1].content == "In valid"
         
-        if i == len(stim_lst) - 1 and valid == 1 and sending.block == "5":
+        if i == len(stim_lst) - 2 and valid == 1 and sending.block == "5":
             block3_rt = DPP_rt_list[0] + KMT_rt_list[0]
             block5_rt = DPP_rt_list[1] + KMT_rt_list[1]
             if block3_rt > block5_rt:
-                stim_lst += [Stim("DPP", "dontmatter", "dontmatter", 6)]
+                stim_lst[len(stim_lst) - 1].content == "DPP"
             elif block3_rt < block5_rt:
-                stim_lst += [Stim("KMT", "dontmatter", "dontmatter", 6)]
+                stim_lst[len(stim_lst) - 1].content == "KMT"
             else:
-                stim_lst += [Stim("Neutral", "dontmatter", "dontmatter", 6)]
+                stim_lst[len(stim_lst) - 1].content == "Neutral"
 
 start_server = websockets.serve(experiment, 'localhost', 8765)        
 
