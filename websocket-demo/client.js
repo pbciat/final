@@ -152,7 +152,7 @@ function process_block0() {
             <p>NEXT</p>
         </button>
     </div>
-    <div id="word">按空白鍵進入下一步</div>
+    <div id="word">按空白鍵進入測驗解說</div>
     `;
 }
 
