@@ -54,8 +54,8 @@ document.onkeydown = function(e) {
         if (correct == 'true') setTimeout(cleanStim, 100);
 
         // send data to server
-        if (e.keyCode == 32 && data.block != '0') { setTimeout(sendData, 1100);} // interval after interval block
-        else if (e.keyCode == 32 && data.block == '0') {setTimeout(sendData, 300);} // interval after staring block
+        if (e.keyCode == 32 && data.block != '0') { setTimeout(sendData, 1100); } // interval after interval block
+        else if (e.keyCode == 32 && data.block == '0') { setTimeout(sendData, 300); } // interval after staring block
         else { setTimeout(sendData, 600); } // trials within a block: wait for 0.6 sec
     }
 }
@@ -247,12 +247,14 @@ function process_block6() {
 function process_block01() {
     document.getElementById("left-cue2").innerHTML = '民進黨';
     document.getElementById("right-cue2").innerHTML = '國民黨';
-    document.getElementsByTagName('body')[0].style = 'background: linear-gradient(180deg, #A5AACE, 50%, #BFBFBF);color: white;'
+    document.getElementsByTagName('body')[0].style = 'background: linear-gradient(90deg, #66CCCC, 55%, #6666CC);'
         // Write instructions
     document.getElementById("content-text").innerHTML = `
-    <p>注意上方的<b>類別標籤</b> ！！！</p>
-    呈現的項目屬於<b>民進黨</b>：按 E 鍵<br>
-    呈現的項目屬於<b>國民黨</b>：按 I 鍵
+    <div class="inst">
+        <p>注意上方的<b>類別標籤</b> ！！！</p>
+        呈現的項目屬於<b>民進黨</b>：按 E 鍵<br>
+        呈現的項目屬於<b>國民黨</b>：按 I 鍵
+    </div>
     <div class=bottomB>
         <button id="next" type="button">
             <p>START</p>
