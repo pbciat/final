@@ -148,11 +148,10 @@ function process_block0() {
         </div>
     <!--首頁底部按鈕-->
     <div class=bottomA>
-        <button class="next" type="button">
-            <p>NEXT</p>
-        </button>
+        <button class="next" type="button">NEXT</button>
+        <div class="word">按空白鍵進入測驗解說</div>
     </div>
-    <div id="word">按空白鍵進入測驗解說</div>
+    
     `;
 }
 
@@ -165,8 +164,8 @@ function process_block1() {
     write_stim();
     document.getElementById("content-text").innerHTML = `
     <div class="EI">
-        <button id="E" type="button">E</button>
-        <button id="I" type="button">I</button>
+        <button id="E" type="button">E / 民進黨</button>
+        <button id="I" type="button">I / 國民黨</button>
     </div>
     `;
 }
@@ -260,7 +259,7 @@ function process_block01() {
             <p>START</p>
         </button>
     </div>
-    <div id="word">按空白鍵開始測驗</div>
+    <div class="word">按空白鍵開始測驗</div>
     `;
 };
 
@@ -304,7 +303,7 @@ function write_instuctions(left, right, left2, right2) {
             <p>START</p>
         </button>
     </div>
-    <div id="word">按空白鍵繼續測驗</div>
+    <div class="word">按空白鍵繼續測驗</div>
     `;
 }
 

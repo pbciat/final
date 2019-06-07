@@ -68,10 +68,11 @@ body {
 }
 
 .bottomA {
-    width: 100px;
-    margin-top: 330px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 400px;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    margin-left: -200px;
 }
 
 .bottomB {
@@ -118,7 +119,7 @@ body {
     float: right;
 }
 
-#word {
+.word {
     margin-top: 20px;
     text-align: center;
     color: white;
