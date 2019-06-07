@@ -179,11 +179,10 @@ function process_block6() {
 
     var resp = 'undefined';
     switch (data.content) {
-        case 'KMT': resp = 'KMT'; break;
-        case 'DPP': resp = 'DPP'; break;
-        case 'neutral': resp = 'neu'; break;
-        case 'allWrong': resp = 'allWrong'; break;
-        case 'tooMany': resp = 'tooMany'; break;
+        case 'KMT': resp = 'You are KMTer!'; break;
+        case 'DPP': resp = 'You are DPPer!'; break;
+        case 'neutral': resp = 'You are neutral!'; break;
+        case 'tooMany': resp = 'You have too many wrong answers!'; break;
         default: window.alert("Block 6 content undefined!!!"); // error handling
     }
     
