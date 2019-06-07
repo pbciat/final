@@ -1,4 +1,6 @@
 body {
+    margin: 0px;
+    padding: 0px;
     font-size: 1.3em;
 }
 
@@ -71,19 +73,12 @@ body {
     width: 100%;
 }
 
-.bottomA {
+.bottom {
     width: 400px;
     position: absolute;
     top: 65%;
     left: 50%;
     margin-left: -200px;
-}
-
-.bottomB {
-    width: 100px;
-    margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .next {

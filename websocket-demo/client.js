@@ -148,7 +148,7 @@ function process_block0() {
             <img id="TWpic" src="前端pic/TW.png">
         </div>
     <!--首頁底部按鈕-->
-    <div class=bottomA>
+    <div class=bottom>
         <button class="next" type="button">NEXT</button>
         <div class="word">按空白鍵進入測驗解說</div>
     </div>
@@ -255,7 +255,7 @@ function process_block01() {
         呈現的項目屬於<b>民進黨</b>：按 E 鍵<br>
         呈現的項目屬於<b>國民黨</b>：按 I 鍵
     </div>
-    <div class=bottomB>
+    <div class=bottom>
         <button class="next" type="button">
             <p>START</p>
         </button>
@@ -299,7 +299,7 @@ function write_instuctions(left, right, left2, right2) {
         呈現的項目屬於<b>${left}</b>${left2}：按 E 鍵<br>
         呈現的項目屬於<b>${right}</b>${right2}：按 I 鍵
     </div>
-    <div class=bottomB>
+    <div class=bottom>
         <button class="next" type="button">
             <p>START</p>
         </button>
