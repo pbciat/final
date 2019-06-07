@@ -3,7 +3,7 @@ body {
 }
 
 .container {
-    idth: 100%;
+    width: 100%;
     height: 780px;
     margin: auto;
 }
@@ -67,9 +67,16 @@ body {
     width: 100%;
 }
 
-.bottom {
+.bottomA {
     width: 100px;
     margin-top: 330px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bottomB {
+    width: 100px;
+    margin-top: 125px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -89,6 +96,7 @@ body {
     margin-right: auto;
     letter-spacing: 3px;
     font-size: 12pt;
+    padding: 0px;
 }
 
 #E {
