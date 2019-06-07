@@ -259,8 +259,9 @@ function process_block01() {
         <button class="next" type="button">
             <p>START</p>
         </button>
+        <div class="word">按空白鍵開始測驗</div>
     </div>
-    <div class="word">按空白鍵開始測驗</div>
+    
     `;
 };
 
