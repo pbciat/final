@@ -145,13 +145,13 @@ function process_block0() {
     <div class="picture">
             <img id="TWpic" src="前端pic/TW.png">
         </div>
-        <!--首頁底部按鈕-->
-        <div class=bottom>
-            <button id="next" type="button">
-                <p>NEXT</p>
-            </button>
-        </div>
-        <div id="word">按空白鍵進入下一步</div>
+    <!--首頁底部按鈕-->
+    <div class=bottomA>
+        <button id="next" type="button">
+            <p>NEXT</p>
+        </button>
+    </div>
+    <div id="word">按空白鍵進入下一步</div>
     `;
 }
 
@@ -250,12 +250,18 @@ function process_block6() {
 function process_block01() {
     document.getElementById("left-cue2").innerHTML = '民進黨';
     document.getElementById("right-cue2").innerHTML = '國民黨';
-    // Write instructions
+    document.getElementsByTagName('body')[0].style = 'background: linear-gradient(180deg, #A5AACE, 50%, #BFBFBF);color: white;'
+        // Write instructions
     document.getElementById("content-text").innerHTML = `
     <p>注意上方的<b>類別標籤</b> ！！！</p>
     呈現的項目屬於<b>民進黨</b>：按 E 鍵<br>
     呈現的項目屬於<b>國民黨</b>：按 I 鍵
-    <p>按<b>空白鍵</b>開始</p>
+    <div class=bottomB>
+        <button id="next" type="button">
+            <p>START</p>
+        </button>
+    </div>
+    <div id="word">按空白鍵開始測驗</div>
     `;
 };
 
