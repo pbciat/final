@@ -141,22 +141,40 @@ def judge(stim_lst):
                 elif stim_lst[i].correct == False:
                     wrongcount += 1
             if totalcount == 40:
-                if wrongcount >= 16 and valid == 1:
+                if wrongcount >= 16 or DPPcount == 0 or KMTcount == 0:
                     valid = 0
                     stim_lst[len(stim_lst) - 1].content = "tooMany"
-                elif DPPcount != 0 and KMTcount != 0:
-                    DPP_rt_list.append(round(DPP_rt/DPPcount, 4))
-                    KMT_rt_list.append(round(KMT_rt/KMTcount, 4))
-        if i == len(stim_lst) - 2 and valid == 1:
-            block3_rt = DPP_rt_list[0] + KMT_rt_list[0]
-            block5_rt = DPP_rt_list[1] + KMT_rt_list[1]
-            if block3_rt < block5_rt:
-                stim_lst[len(stim_lst) - 1].content = "DPP"
-            elif block3_rt > block5_rt:
-                stim_lst[len(stim_lst) - 1].content = "KMT"
-            else:
-                stim_lst[len(stim_lst) - 1].content = "neutral"
+                elif DPPcount != 0 and KMTcount != 0 and valid == 1:
+                    if stim_lst[i].block == "3":
+                        block3_rt_lst = []
+                        block3_rt_lst.append("Reaction time for DPP : " + str(round(DPP_rt/DPPcount, 4)))
+                        block3_rt_lst.append("Reaction time for KMT : " + str(round(KMT_rt/KMTcount, 4)))
+                        block3_rt = round((DPP_rt + KMT_rt)/(DPPcount + KMTcount), 4)
+                        block3_rt_lst.append("Average reaction time : " + str(block3_rt))
+                    else:
+                        block5_rt_lst = []
+                        block5_rt_lst.append("Reaction time for DPP : " + str(round(DPP_rt/DPPcount, 4)))
+                        block5_rt_lst.append("Reaction time for KMT : " + str(round(KMT_rt/KMTcount, 4)))
+                        block5_rt = round((DPP_rt + KMT_rt)/(DPPcount + KMTcount), 4)
+                        block5_rt_lst.append("Average reaction time : " + str(block5_rt))
 
+    if valid == 1:
+        if block3_rt < block5_rt:
+            stim_lst[len(stim_lst) - 1].content = "DPP"
+        elif block3_rt > block5_rt:
+            stim_lst[len(stim_lst) - 1].content = "KMT"
+        else:
+            stim_lst[len(stim_lst) - 1].content = "neutral"
+        print("Block3 reaction time")
+        for i in range(3):
+            print(block3_rt_lst[i])
+        print()
+        print("Block5 reaction time")
+        for i in range(3):    
+            print(block5_rt_lst[i])
+    else:
+        print("invalid!")
+        
     return stim_lst[len(stim_lst) - 1].content
 
 start_server = websockets.serve(experiment, 'localhost', 8765)        
