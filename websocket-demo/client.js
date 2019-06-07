@@ -148,7 +148,7 @@ function process_block0() {
         </div>
     <!--首頁底部按鈕-->
     <div class=bottomA>
-        <button id="next" type="button">
+        <button class="next" type="button">
             <p>NEXT</p>
         </button>
     </div>
@@ -256,7 +256,7 @@ function process_block01() {
         呈現的項目屬於<b>國民黨</b>：按 I 鍵
     </div>
     <div class=bottomB>
-        <button id="next" type="button">
+        <button class="next" type="button">
             <p>START</p>
         </button>
     </div>
@@ -294,12 +294,17 @@ function process_block45() {
 
 function write_instuctions(left, right, left2, right2) {
     document.getElementById("content-text").innerHTML = `
-    <p>注意上方，<b>類別標籤已改變</b> ！！！</p>
-
-    呈現的項目屬於<b>${left}</b>${left2}：按 E 鍵<br>
-    呈現的項目屬於<b>${right}</b>${right2}：按 I 鍵
-
-    <p>按<b>空白鍵</b>開始</p>
+    <div class="inst">
+        <p>注意上方，<b>類別標籤已改變</b> ！！！</p>
+        呈現的項目屬於<b>${left}</b>${left2}：按 E 鍵<br>
+        呈現的項目屬於<b>${right}</b>${right2}：按 I 鍵
+    </div>
+    <div class=bottomB>
+        <button class="next" type="button">
+            <p>START</p>
+        </button>
+    </div>
+    <div id="word">按空白鍵繼續測驗</div>
     `;
 }
 
