@@ -177,7 +177,13 @@ function process_block2() {
     document.getElementById("left-cue1").innerHTML = '正面';
     document.getElementById("right-cue1").innerHTML = '負面';
     // present stimulus
-    write_stim()
+    write_stim();
+    document.getElementById("content-text").innerHTML = `
+    <div class="EI">
+        <button id="E" type="button">E / 正面</button>
+        <button id="I" type="button">I / 負面</button>
+    </div>
+    `;
 }
 
 // Testing Block: DPP 左;  KMT 右;  postive 左;  negative 右
