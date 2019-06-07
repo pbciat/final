@@ -124,8 +124,8 @@ async def experiment(websocket, path):
                 print(stim)
                 print()
         """
-    
-        if sending.block == "3" or sending.block == "5":
+    for i in range(len(stim_lst)): 
+        if stim_lst[i].block == "3" or stim_lst[i].block == "5":
             if stim_lst[i - 1].block == "23" or stim_lst[i - 1].block == "45":
                 DPPcount = 0
                 KMTcount = 0
@@ -133,41 +133,35 @@ async def experiment(websocket, path):
                 KMT_rt = 0
                 wrongcount = 0
                 totalcount = 0
-                practice = 0
-        
-        if sending.block == "3" or sending.block == "5":
-            practice += 1
             totalcount += 1
-            if practice > 8:
-                if sending.correct == True and sending.cnpt_attr == 'c':
-                    if sending.content in DPP_list:
+            if totalcount > 8:
+                if stim_lst[i].correct == True and stim_lst[i].cnpt_attr == 'c':
+                    if stim_lst[i].content in DPP_list:
                         DPPcount += 1
-                        DPP_rt += sending.rt
+                        DPP_rt += stim_lst[i].rt
                     else:
                         KMTcount += 1
-                        KMT_rt += sending.rt
-                elif sending.correct == False:
+                        KMT_rt += stim_lst[i].rt
+                elif stim_lst[i].correct == False:
                     wrongcount += 1
             if totalcount == 40:
-                if DPPcount != 0 and KMTcount != 0:
+                if wrongcount >= 16 and valid == 1:
+                    valid = 0
+                    stim_lst[len(stim_lst) - 1].content == "tooMany"
+                elif DPPcount != 0 and KMTcount != 0:
                     DPP_rt_list.append(round(DPP_rt/DPPcount, 4))
                     KMT_rt_list.append(round(KMT_rt/KMTcount, 4))
-                    if wrongcount >= 16 and valid == 1:
-                        valid = 0
-                        stim_lst[len(stim_lst) - 1].content == "tooMany"
-                else:
-                    valid = 0
-                    stim_lst[len(stim_lst) - 1].content == "allWrong"
         
-        if i == len(stim_lst) - 2 and valid == 1 and sending.block == "5":
+        if i == len(stim_lst) - 2 and valid == 1:
             block3_rt = DPP_rt_list[0] + KMT_rt_list[0]
             block5_rt = DPP_rt_list[1] + KMT_rt_list[1]
-            if block3_rt > block5_rt:
+            if block3_rt < block5_rt:
                 stim_lst[len(stim_lst) - 1].content == "DPP"
-            elif block3_rt < block5_rt:
+            elif block3_rt > block5_rt:
                 stim_lst[len(stim_lst) - 1].content == "KMT"
             else:
                 stim_lst[len(stim_lst) - 1].content == "neutral"
+    #print(block3_rt, block5_rt, DPPcount, KMTcount, DPP_rt_list, KMT_rt_list, totalcount, wrongcount, practice)
 
 start_server = websockets.serve(experiment, 'localhost', 8765)        
 
