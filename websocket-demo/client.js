@@ -2,39 +2,39 @@ var websocket = new WebSocket("ws://127.0.0.1:8765/");
 var times = 0;
 var detect_key = true;
 var start = new Date().getTime();
-var beep = document.getElementById("beep");  // beep.wav
-var wrong = document.getElementById("wrong");  // wrong.mp3
-var mario = document.getElementById("mario");  // mario.mp3
+var beep = document.getElementById("beep"); // beep.wav
+var wrong = document.getElementById("wrong"); // wrong.mp3
+var mario = document.getElementById("mario"); // mario.mp3
 
 
 /*
 ToDo: Ignore keys other than space on staring or interval trials
 */
-document.onkeydown = function(e){
+document.onkeydown = function(e) {
     e = e || window.event;
-    
-    if (detect_key && ( (e.keyCode == 69 || e.keyCode == 73) || e.keyCode == 32) ) {
+
+    if (detect_key && ((e.keyCode == 69 || e.keyCode == 73) || e.keyCode == 32)) {
         // Return early if space pressed in normal blocks
         if (['1', '2', '3', '4', '5'].indexOf(data.block) >= 0 &&
-            e.keyCode == 32) {return;};
+            e.keyCode == 32) { return; };
         // Return early if e or i pressed in interval blocks
         if (['0', '01', '12', '23', '34', '45'].indexOf(data.block) >= 0 &&
-            e.keyCode != 32) {return;};
+            e.keyCode != 32) { return; };
         // Always return early in begining or testFeedback block (freeze program)
-        if (['6'].indexOf(data.block) >= 0) {return;};
+        if (['6'].indexOf(data.block) >= 0) { return; };
 
         // pressed left key
-        if (e.keyCode == 69){   // keycode for e
+        if (e.keyCode == 69) { // keycode for e
             RT = getRT();
-            correct = (data.answer == 'left') ? 'true':'false';
+            correct = (data.answer == 'left') ? 'true' : 'false';
             resp_feedback('right');
-            
-        // pressed right key
+
+            // pressed right key
         } else if (e.keyCode == 73) {
             RT = getRT();
-            correct = (data.answer == 'right') ? 'true':'false';
+            correct = (data.answer == 'right') ? 'true' : 'false';
             resp_feedback('left');
-        } 
+        }
         // Pressed space
         else if (e.keyCode == 32) {
             RT = -1;
@@ -46,22 +46,22 @@ document.onkeydown = function(e){
                 mario.play();
             }
         } else { window.alert("Bug in document.onkeydown"); };
-        
+
         // lock key
         detect_key = false;
 
         // Clean up if Correct
         if (correct == 'true') setTimeout(cleanStim, 100);
-        
+
         // send data to server
-        if (e.keyCode == 32) {setTimeout(sendData, 2400);}  // pressed space: wait for 2.4 sec
-        else {setTimeout(sendData, 300);}  // pressed e or i: wait for 0.5 sec
+        if (e.keyCode == 32) { setTimeout(sendData, 2400); } // pressed space: wait for 2.4 sec
+        else { setTimeout(sendData, 300); } // pressed e or i: wait for 0.5 sec
     }
 }
 
 // Send data
 function sendData() {
-    sending = {'correct': correct, 'rt': RT};
+    sending = { 'correct': correct, 'rt': RT };
     websocket.send(JSON.stringify(sending));
 }
 
@@ -72,7 +72,7 @@ type: text
 content: 真誠
 answer: left
 */
-websocket.onmessage = function (event) {
+websocket.onmessage = function(event) {
     data = JSON.parse(event.data);
 
     // Clean up previous stimulus
@@ -81,25 +81,50 @@ websocket.onmessage = function (event) {
 
     switch (data.block) {
         // Testing Blocks
-        case '3': process_block3(); break;
-        case '5': process_block5(); break;
-        // Pairing Blocks
-        case '1': process_block1(); break;
-        case '2': process_block2(); break;
-        case '4': process_block4(); break;
-        // Interval Instructions
-        case '01': process_block01(); break;
-        case '12': process_block12(); break;
-        case '23': process_block23(); break;
-        case '34': process_block34(); break;
-        case '45': process_block45(); break;
-        // 起始畫面 
-        case '0': process_block0(); break;        
-        // 結束畫面 (結果回饋)
-        case '6': process_block6(); break;
-        default: window.alert("Undefined block"); // error handling
+        case '3':
+            process_block3();
+            break;
+        case '5':
+            process_block5();
+            break;
+            // Pairing Blocks
+        case '1':
+            process_block1();
+            break;
+        case '2':
+            process_block2();
+            break;
+        case '4':
+            process_block4();
+            break;
+            // Interval Instructions
+        case '01':
+            process_block01();
+            break;
+        case '12':
+            process_block12();
+            break;
+        case '23':
+            process_block23();
+            break;
+        case '34':
+            process_block34();
+            break;
+        case '45':
+            process_block45();
+            break;
+            // 起始畫面 
+        case '0':
+            process_block0();
+            break;
+            // 結束畫面 (結果回饋)
+        case '6':
+            process_block6();
+            break;
+        default:
+            window.alert("Undefined block"); // error handling
     }
-    
+
     // start timer
     start = new Date().getTime();
     detect_key = true
@@ -114,10 +139,19 @@ function process_block0() {
     document.getElementById("left-cue2").innerHTML = '';
     document.getElementById("right-cue1").innerHTML = '';
     document.getElementById("right-cue2").innerHTML = '';
-    // Beginning screen
+    document.getElementsByTagName('body')[0].style = 'background: linear-gradient(-225deg, #24EAC3, 55%, #3456C1);'
+        // Beginning screen
     document.getElementById("content-text").innerHTML = `
-    <p>誠實包子 開始畫面</p>
-    <p>按<b>空白鍵</b>開始</p>
+    <div class="picture">
+            <img id="TWpic" src="前端pic/TW.png">
+        </div>
+        <!--首頁底部按鈕-->
+        <div class=bottom>
+            <button id="next" type="button">
+                <p>NEXT</p>
+            </button>
+        </div>
+        <div id="word">按空白鍵進入下一步</div>
     `;
 }
 
@@ -128,6 +162,16 @@ function process_block1() {
     document.getElementById("right-cue2").innerHTML = '國民黨';
     // present stimulus
     write_stim();
+    document.getElementById("content-text").innerHTML = `
+    <div class="EI">
+            <button id="E" type="button">
+                <p>E</p>
+            </button>
+            <button id="I" type="button">
+                <p>I</p>
+            </button>
+        </div>
+    `;
 }
 
 // Pairing Block: postive 左;  negative 右
@@ -179,13 +223,22 @@ function process_block6() {
 
     var resp = 'undefined';
     switch (data.content) {
-        case 'KMT': resp = 'You are KMTer!'; break;
-        case 'DPP': resp = 'You are DPPer!'; break;
-        case 'neutral': resp = 'You are neutral!'; break;
-        case 'tooMany': resp = 'You have too many wrong answers!'; break;
-        default: window.alert("Block 6 content undefined!!!"); // error handling
+        case 'KMT':
+            resp = 'You are KMTer!';
+            break;
+        case 'DPP':
+            resp = 'You are DPPer!';
+            break;
+        case 'neutral':
+            resp = 'You are neutral!';
+            break;
+        case 'tooMany':
+            resp = 'You have too many wrong answers!';
+            break;
+        default:
+            window.alert("Block 6 content undefined!!!"); // error handling
     }
-    
+
     // Write Political party preference
     //document.getElementById("stimulus").innerHTML = data.content;
     document.getElementById("content-text").innerHTML = `
@@ -211,6 +264,7 @@ function process_block12() {
     document.getElementById("right-cue1").innerHTML = '負面';
     write_instuctions('正面', '負面', '', '');
 };
+
 function process_block23() {
     document.getElementById("left-cue1").innerHTML = '正面';
     document.getElementById("right-cue1").innerHTML = '負面';
@@ -218,11 +272,13 @@ function process_block23() {
     document.getElementById("right-cue2").innerHTML = '國民黨';
     write_instuctions('正面', '負面', '或<b>民進黨</b>', '或<b>國民黨</b>');
 };
+
 function process_block34() {
     document.getElementById("left-cue2").innerHTML = '國民黨';
     document.getElementById("right-cue2").innerHTML = '民進黨';
     write_instuctions('國民黨', '民進黨', '', '');
 };
+
 function process_block45() {
     document.getElementById("left-cue1").innerHTML = '正面';
     document.getElementById("right-cue1").innerHTML = '負面';
@@ -248,7 +304,7 @@ function write_stim() {
         document.getElementById("content-text").innerHTML = data.content;
         if (data.cnpt_attr == 'a') {
             document.getElementById("content-text").style = 'color:green;';
-        } 
+        }
     } else if (data.type == 'img') {
         document.getElementById("content-img").src = data.content;
         document.getElementById("content-img").style = 'width:200px;height: 200px;';
