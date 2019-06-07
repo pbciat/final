@@ -54,8 +54,9 @@ document.onkeydown = function(e) {
         if (correct == 'true') setTimeout(cleanStim, 100);
 
         // send data to server
-        if (e.keyCode == 32) { setTimeout(sendData, 2400); } // pressed space: wait for 2.4 sec
-        else { setTimeout(sendData, 300); } // pressed e or i: wait for 0.5 sec
+        if (e.keyCode == 32 && data.block != '0') { setTimeout(sendData, 1100);} // interval after interval block
+        else if (e.keyCode == 32 && data.block == '0') {setTimeout(sendData, 300);} // interval after staring block
+        else { setTimeout(sendData, 600); } // trials within a block: wait for 0.6 sec
     }
 }
 
