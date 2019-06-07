@@ -143,7 +143,7 @@ def judge(stim_lst):
             if totalcount == 40:
                 if wrongcount >= 16 and valid == 1:
                     valid = 0
-                    stim_lst[len(stim_lst) - 1].content == "tooMany"
+                    stim_lst[len(stim_lst) - 1].content = "tooMany"
                 elif DPPcount != 0 and KMTcount != 0:
                     DPP_rt_list.append(round(DPP_rt/DPPcount, 4))
                     KMT_rt_list.append(round(KMT_rt/KMTcount, 4))
