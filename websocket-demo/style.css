@@ -3,39 +3,118 @@ body {
 }
 
 .container {
-    width: 70%;
-    height: 500px;
+    idth: 100%;
+    height: 780px;
     margin: auto;
-    padding: 10px;
-}
-.button-cue {
-    height: 120px;
-}
-.left-cue {
-    width: 15%;
-    height: 50px;
-    float: left;
-}
-.right-cue {
-    float:right;
-    height: 50px;
 }
 
-.stimulus{
+.button-cue {
+    padding-top: 50px;
+    height: 120px;
+}
+
+.left-cue {
+    width: 10%;
+    height: 100px;
+    padding-left: 10px;
+    float: left;
+}
+
+.right-cue {
+    width: 10%;
+    height: 100px;
+    padding-right: 10px;
+    float: right;
+    text-align: right;
+}
+
+.stimulus {
+    margin-top: 100px;
     text-align: center;
 }
 
-
-#left-cue1, #left-cue2, #right-cue1, #right-cue2 {
-    display:block;
+#left-cue1,
+#left-cue2,
+#right-cue1,
+#right-cue2 {
+    display: block;
 }
 
+
 /* 正負向 文字刺激 顏色 */
-#left-cue1, #right-cue1 {
+
+#left-cue1,
+#right-cue1 {
     color: green;
 }
 
 .cue {
-    display:block;
+    display: block;
     font-size: 0.8em;
+}
+
+.picture {
+    width: 65%;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -20%;
+    margin-left: -32.5%;
+}
+
+#TWpic {
+    width: 100%;
+}
+
+.bottom {
+    width: 100px;
+    margin-top: 330px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#next,
+#E,
+#I {
+    width: 100px;
+    height: 50px;
+    color: white;
+    background-color: transparent;
+    border-color: white;
+    border-radius: 25px;
+    margin-top: 140px;
+    border-width: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: 3px;
+    font-size: 12pt;
+}
+
+#E {
+    font-weight: bold;
+    margin-left: 100px;
+    float: left;
+}
+
+#I {
+    font-weight: bold;
+    margin-right: 100px;
+    float: right;
+}
+
+#word {
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+    font-size: 12pt;
+    letter-spacing: 5px;
+}
+
+.EI {
+    position: absolute;
+    width: 80%;
+    top: 450px;
+    left: 50%;
+    margin-left: -40%;
 }
