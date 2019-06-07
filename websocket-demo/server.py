@@ -98,32 +98,28 @@ stim_lst = block0_1 + block1_1 + block1_stim_list + block2_1 + block2_stim_list 
 
 # Websockets server function
 async def experiment(websocket, path):
-    global stim_lst
-    valid = 1
     for i in range(len(stim_lst)):
-        # Send stimulus to client
-        sending = stim_lst[i]
-        await websocket.send(sending.toJSON())
-        ##print('Sent to client:\n', sending, sep='')
-        
-        # Receive repsonse from client
-        res = await websocket.recv()
-        msg = json.loads(res)
-        sending.rt = float(msg['rt'])
-        sending.correct = str2bool(msg['correct'])
-        stim_lst[i] = sending  # Save received result
-        ##print('Received from client:\n', sending, '\n', sep='')
+        if i != len(stim_lst) - 1:
+            # Send stimulus to client
+            sending = stim_lst[i]
+            await websocket.send(sending.toJSON())
+            ##print('Sent to client:\n', sending, sep='')
+            # Receive repsonse from client
+            res = await websocket.recv()
+            msg = json.loads(res)
+            sending.rt = float(msg['rt'])
+            sending.correct = str2bool(msg['correct'])
+            stim_lst[i] = sending  # Save received result
+            ##print('Received from client:\n', sending, '\n', sep='')
+            # hold for 1sec before next round
+            #await asyncio.sleep(1)
+        else:
+            stim_lst[len(stim_lst) - 1].content = judge(stim_lst)
+            sending = stim_lst[i]
+            await websocket.send(sending.toJSON())
 
-        # hold for 1sec before next round
-        #await asyncio.sleep(1)
-        """
-        # Print final result after receiving the last trial
-        if i == len(stim_lst) - 2:
-            print('Printing results ...')
-            for stim in stim_lst:
-                print(stim)
-                print()
-        """
+def judge(stim_lst):
+    valid = 1
     for i in range(len(stim_lst)): 
         if stim_lst[i].block == "3" or stim_lst[i].block == "5":
             if stim_lst[i - 1].block == "23" or stim_lst[i - 1].block == "45":
@@ -151,17 +147,17 @@ async def experiment(websocket, path):
                 elif DPPcount != 0 and KMTcount != 0:
                     DPP_rt_list.append(round(DPP_rt/DPPcount, 4))
                     KMT_rt_list.append(round(KMT_rt/KMTcount, 4))
-        
         if i == len(stim_lst) - 2 and valid == 1:
             block3_rt = DPP_rt_list[0] + KMT_rt_list[0]
             block5_rt = DPP_rt_list[1] + KMT_rt_list[1]
             if block3_rt < block5_rt:
-                stim_lst[len(stim_lst) - 1].content == "DPP"
+                stim_lst[len(stim_lst) - 1].content = "DPP"
             elif block3_rt > block5_rt:
-                stim_lst[len(stim_lst) - 1].content == "KMT"
+                stim_lst[len(stim_lst) - 1].content = "KMT"
             else:
-                stim_lst[len(stim_lst) - 1].content == "neutral"
-    #print(block3_rt, block5_rt, DPPcount, KMTcount, DPP_rt_list, KMT_rt_list, totalcount, wrongcount, practice)
+                stim_lst[len(stim_lst) - 1].content = "neutral"
+
+    return stim_lst[len(stim_lst) - 1].content
 
 start_server = websockets.serve(experiment, 'localhost', 8765)        
 
