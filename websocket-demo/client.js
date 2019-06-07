@@ -164,13 +164,9 @@ function process_block1() {
     write_stim();
     document.getElementById("content-text").innerHTML = `
     <div class="EI">
-            <button id="E" type="button">
-                <p>E</p>
-            </button>
-            <button id="I" type="button">
-                <p>I</p>
-            </button>
-        </div>
+        <button id="E" type="button">E</button>
+        <button id="I" type="button">I</button>
+    </div>
     `;
 }
 
