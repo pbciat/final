@@ -10,6 +10,7 @@ var mario = document.getElementById("mario"); // mario.mp3
 /*
 ToDo: Ignore keys other than space on staring or interval trials
 */
+
 document.onkeydown = function(e) {
     e = e || window.event;
 
