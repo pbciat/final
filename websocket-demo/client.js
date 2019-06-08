@@ -196,6 +196,7 @@ function process_block3() {
     document.getElementById("right-cue2").innerHTML = '國民黨';
     // present stimulus
     write_stim();
+    document.getElementById("content-textB").style.display = 'none';
     document.getElementById("content-textB").innerHTML = `
     <div class="EI">
         <button id="E" type="button">E / 民進黨 正面</button>
@@ -212,7 +213,8 @@ function process_block4() {
     document.getElementById("right-cue1").innerHTML = '';
     document.getElementById("right-cue2").innerHTML = '民進黨';
     // present stimulus
-    write_stim()
+    write_stim();
+    document.getElementById("content-textB").style.display = 'none';
     document.getElementById("content-textB").innerHTML = `
     <div class="EI">
         <button id="E" type="button">E / 國民黨</button>
@@ -229,7 +231,8 @@ function process_block5() {
     document.getElementById("right-cue1").innerHTML = '負面';
     document.getElementById("right-cue2").innerHTML = '民進黨';
     // present stimulus
-    write_stim()
+    write_stim();
+    document.getElementById("content-textB").style.display = 'none';
     document.getElementById("content-textB").innerHTML = `
     <div class="EI">
         <button id="E" type="button">E / 國民黨 正面</button>
@@ -242,6 +245,7 @@ function process_block5() {
 function process_block6() {
     // Clear all cues
     cleanCues();
+    document.getElementById("content-textB").style.display = 'none';
 
     var resp = 'undefined';
     switch (data.content) {
@@ -302,12 +306,14 @@ function process_block23() {
     document.getElementById("left-cue2").innerHTML = '民進黨';
     document.getElementById("right-cue2").innerHTML = '國民黨';
     write_instuctions('正面', '負面', '或<b>民進黨</b>', '或<b>國民黨</b>');
+    document.getElementById("content-textB").style.display = 'none';
 };
 
 function process_block34() {
     document.getElementById("left-cue2").innerHTML = '國民黨';
     document.getElementById("right-cue2").innerHTML = '民進黨';
     write_instuctions('國民黨', '民進黨', '', '');
+    document.getElementById("content-textB").style.display = 'none';
 };
 
 function process_block45() {
@@ -316,6 +322,7 @@ function process_block45() {
     document.getElementById("left-cue2").innerHTML = '國民黨';
     document.getElementById("right-cue2").innerHTML = '民進黨';
     write_instuctions('正面', '負面', '或<b>國民黨</b>', '或<b>民進黨</b>');
+    document.getElementById("content-textB").style.display = 'none';
 };
 
 function write_instuctions(left, right, left2, right2) {
