@@ -163,7 +163,7 @@ function process_block1() {
     document.getElementById("right-cue2").innerHTML = '國民黨';
     // present stimulus
     write_stim();
-    document.getElementById("content-text").innerHTML = `
+    document.getElementById("content-textB").innerHTML = `
     <div class="EI">
         <button id="E" type="button">E / 民進黨</button>
         <button id="I" type="button">I / 國民黨</button>
@@ -178,7 +178,7 @@ function process_block2() {
     document.getElementById("right-cue1").innerHTML = '負面';
     // present stimulus
     write_stim();
-    document.getElementById("content-text").innerHTML = `
+    document.getElementById("content-textB").innerHTML = `
     <div class="EI">
         <button id="E" type="button">E / 正面</button>
         <button id="I" type="button">I / 負面</button>
@@ -195,6 +195,12 @@ function process_block3() {
     document.getElementById("right-cue2").innerHTML = '國民黨';
     // present stimulus
     write_stim();
+    document.getElementById("content-textB").innerHTML = `
+    <div class="EI">
+        <button id="E" type="button">E / 民進黨 正面</button>
+        <button id="I" type="button">I / 國民黨 負面</button>
+    </div>
+    `;
 }
 
 // Pairing Block: KMT 左;  DPP 右
@@ -206,6 +212,12 @@ function process_block4() {
     document.getElementById("right-cue2").innerHTML = '民進黨';
     // present stimulus
     write_stim()
+    document.getElementById("content-textB").innerHTML = `
+    <div class="EI">
+        <button id="E" type="button">E / 國民黨</button>
+        <button id="I" type="button">I / 民進黨</button>
+    </div>
+    `;
 }
 
 // Testing Block: KMT 左;  DPP 右;  postive 左;  negative 右
@@ -217,6 +229,12 @@ function process_block5() {
     document.getElementById("right-cue2").innerHTML = '民進黨';
     // present stimulus
     write_stim()
+    document.getElementById("content-textB").innerHTML = `
+    <div class="EI">
+        <button id="E" type="button">E / 國民黨 正面</button>
+        <button id="I" type="button">I / 民進黨 負面</button>
+    </div>
+    `;
 }
 
 // 結束畫面
