@@ -196,7 +196,7 @@ function process_block3() {
     document.getElementById("right-cue2").innerHTML = '國民黨';
     // present stimulus
     write_stim();
-    document.getElementById("content-textB").style.display = 'none';
+    document.getElementById("content-textB").style.display = 'inline';
     document.getElementById("content-textB").innerHTML = `
     <div class="EI">
         <button id="E" type="button">E / 民進黨 正面</button>
@@ -214,7 +214,7 @@ function process_block4() {
     document.getElementById("right-cue2").innerHTML = '民進黨';
     // present stimulus
     write_stim();
-    document.getElementById("content-textB").style.display = 'none';
+    document.getElementById("content-textB").style.display = 'inline';
     document.getElementById("content-textB").innerHTML = `
     <div class="EI">
         <button id="E" type="button">E / 國民黨</button>
@@ -232,7 +232,7 @@ function process_block5() {
     document.getElementById("right-cue2").innerHTML = '民進黨';
     // present stimulus
     write_stim();
-    document.getElementById("content-textB").style.display = 'none';
+    document.getElementById("content-textB").style.display = 'inline';
     document.getElementById("content-textB").innerHTML = `
     <div class="EI">
         <button id="E" type="button">E / 國民黨 正面</button>
