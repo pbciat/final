@@ -178,6 +178,7 @@ function process_block2() {
     document.getElementById("right-cue1").innerHTML = '負面';
     // present stimulus
     write_stim();
+    document.getElementById("content-textB").style.display = 'inline';
     document.getElementById("content-textB").innerHTML = `
     <div class="EI">
         <button id="E" type="button">E / 正面</button>
@@ -285,7 +286,6 @@ function process_block01() {
         </button>
         <div class="word">按空白鍵開始測驗</div>
     </div>
-    
     `;
 };
 
@@ -293,6 +293,7 @@ function process_block12() {
     document.getElementById("left-cue1").innerHTML = '正面';
     document.getElementById("right-cue1").innerHTML = '負面';
     write_instuctions('正面', '負面', '', '');
+    document.getElementById("content-textB").style.display = 'none';
 };
 
 function process_block23() {
@@ -328,8 +329,8 @@ function write_instuctions(left, right, left2, right2) {
         <button class="next" type="button">
             <p>START</p>
         </button>
+        <div class="word">按空白鍵開始測驗</div>
     </div>
-    <div class="word">按空白鍵繼續測驗</div>
     `;
 }
 
