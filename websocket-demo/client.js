@@ -7,6 +7,10 @@ var wrong = document.getElementById("wrong"); // wrong.mp3
 var mario = document.getElementById("mario"); // mario.mp3
 
 
+/*
+ToDo: Ignore keys other than space on staring or interval trials
+*/
+
 document.onkeydown = function(e) {
     e = e || window.event;
 
@@ -24,14 +28,12 @@ document.onkeydown = function(e) {
         if (e.keyCode == 69) { // keycode for e
             RT = getRT();
             correct = (data.answer == 'left') ? 'true' : 'false';
-            document.getElementById("E").click();
             resp_feedback('right');
 
-        // pressed right key
+            // pressed right key
         } else if (e.keyCode == 73) {
             RT = getRT();
             correct = (data.answer == 'right') ? 'true' : 'false';
-            document.getElementById("I").click();
             resp_feedback('left');
         }
         // Pressed space
@@ -154,14 +156,19 @@ function process_block1() {
     // present stimulus
     write_stim();
     // present button layouts: pos & DPP on left
-    twobuttons('民進黨', '國民黨', '', '');
+    document.getElementById("content-textB").innerHTML = `
+    <div class="EI">
+        <button id="E" type="button">E / 民進黨</button>
+        <button id="I" type="button">I / 國民黨</button>
+    </div>
+    `;
 }
 
 // Pairing Block: postive 左;  negative 右
 function process_block2() {
     // present stimulus
     write_stim();
-    // present button layouts: postive 左;  negative 右
+    // present button layouts: pos & DPP on left
     twobuttons('正面', '負面', '', '');
 }
 
@@ -225,7 +232,7 @@ function process_block01() {
         // Write instructions
     document.getElementById("content-text").innerHTML = `
     <div class="inst">
-        <p>注意下方的<b>類別標籤</b> ！！！</p>
+        <p>注意上方的<b>類別標籤</b> ！！！</p>
         呈現的項目屬於<b>民進黨</b>：按 E 鍵<br>
         呈現的項目屬於<b>國民黨</b>：按 I 鍵
     </div>
@@ -261,7 +268,7 @@ function process_block45() {
 function write_instuctions(left, right, left2, right2) {
     document.getElementById("content-text").innerHTML = `
     <div class="inst">
-        <p>注意下方，<b>類別標籤已改變</b> ！！！</p>
+        <p>注意上方，<b>類別標籤已改變</b> ！！！</p>
         呈現的項目屬於<b>${left}</b>${left2}：按 E 鍵<br>
         呈現的項目屬於<b>${right}</b>${right2}：按 I 鍵<br>
         按空白鍵繼續測驗
@@ -272,8 +279,8 @@ function write_instuctions(left, right, left2, right2) {
 function twobuttons(l1, r1, l2, r2) {
     document.getElementById("content-textB").innerHTML = `
     <div class="EI">
-        <button id="E" type="button" onclick="Print(this)>E / ${l1}${l2}</button>
-        <button id="I" type="button" onclick="Print(this)>I / ${r1}${r2}</button>
+        <button id="E" type="button">E / ${l1}${l2}</button>
+        <button id="I" type="button">I / ${r1}${r2}</button>
     </div>
     `;
 }
@@ -314,6 +321,12 @@ function cleanStim() {
 
 // Clean up previous cues
 function cleanCues() {
+    /*
+    document.getElementById("left-cue1").innerHTML = '';
+    document.getElementById("left-cue2").innerHTML = '';
+    document.getElementById("right-cue1").innerHTML = '';
+    document.getElementById("right-cue2").innerHTML = '';
+    */
     document.getElementById("content-textB").innerHTML = '';
 }
 
@@ -321,11 +334,4 @@ function getRT() {
     var end = new Date().getTime();
     var timeTaken = (end - start) / 1000;
     return timeTaken
-}
-
-
-// Show button click effect
-Print = function(button){
-	button.style = 'background:rgb(124, 120, 120);color:white;';
-	setTimeout( function(){ button.style = ''; }, 200 );
 }
