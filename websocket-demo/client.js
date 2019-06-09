@@ -137,7 +137,7 @@ websocket.onmessage = function(event) {
 // 開始畫面
 function process_block0() {
     document.getElementsByTagName('body')[0].style = 'background: linear-gradient(-225deg, #24EAC3, 55%, #3456C1);'
-    // Beginning screen
+        // Beginning screen
     document.getElementById("content-text").innerHTML = `
     <div class="picture">
             <img id="TWpic" src="前端pic/TW.png">
@@ -249,7 +249,7 @@ function process_block6() {
 // Interval Blocks
 function process_block01() {
     document.getElementsByTagName('body')[0].style = 'background: linear-gradient(90deg, #66CCCC, 55%, #6666CC);'
-    // Write instructions
+        // Write instructions
     document.getElementById("content-text").innerHTML = `
     <div class="inst">
         <p>注意上方的<b>類別標籤</b> ！！！</p>
@@ -267,18 +267,22 @@ function process_block01() {
 
 function process_block12() {
     write_instuctions('正面', '負面', '', '');
+    twobuttons('正面', '負面', '', '');
 };
 
 function process_block23() {
     write_instuctions('正面', '負面', '或<b>民進黨</b>', '或<b>國民黨</b>');
+    twobuttons('正面', '負面', '民進黨 ', '國民黨 ');
 };
 
 function process_block34() {
     write_instuctions('國民黨', '民進黨', '', '');
+    twobuttons('國民黨', '民進黨', '', '');
 };
 
 function process_block45() {
     write_instuctions('正面', '負面', '或<b>國民黨</b>', '或<b>民進黨</b>');
+    twobuttons('正面', '負面', '國民黨', '民進黨');
 };
 
 function write_instuctions(left, right, left2, right2) {
@@ -286,16 +290,21 @@ function write_instuctions(left, right, left2, right2) {
     <div class="inst">
         <p>注意上方，<b>類別標籤已改變</b> ！！！</p>
         呈現的項目屬於<b>${left}</b>${left2}：按 E 鍵<br>
-        呈現的項目屬於<b>${right}</b>${right2}：按 I 鍵
-    </div>
-    <div class=bottom>
-        <button class="next" type="button">
-            <p>START</p>
-        </button>
-        <div class="word">按空白鍵開始測驗</div>
+        呈現的項目屬於<b>${right}</b>${right2}：按 I 鍵<br>
+        按空白鍵繼續測驗
     </div>
     `;
 }
+
+function twobuttons(l1, r1, l2, r2) {
+    document.getElementById("content-textB").innerHTML = `
+    <div class="EI">
+        <button id="E" type="button">E / ${l1}${l2}</button>
+        <button id="I" type="button">I / ${r1}${r2}</button>
+    </div>
+    `;
+}
+
 
 // Present stimulus
 function write_stim() {
