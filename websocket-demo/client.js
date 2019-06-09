@@ -337,7 +337,7 @@ function write_stim() {
     if (data.type == 'text') {
         document.getElementById("content-text").innerHTML = data.content;
         if (data.cnpt_attr == 'a') {
-            document.getElementById("content-text").style = 'color:green;';
+            document.getElementById("content-text").style = 'font-size:3.0em;color:green;';
         }
     } else if (data.type == 'img') {
         document.getElementById("content-img").src = data.content;
