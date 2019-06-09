@@ -136,13 +136,8 @@ websocket.onmessage = function(event) {
 
 // 開始畫面
 function process_block0() {
-    // present button layouts: 
-    document.getElementById("left-cue1").innerHTML = '';
-    document.getElementById("left-cue2").innerHTML = '';
-    document.getElementById("right-cue1").innerHTML = '';
-    document.getElementById("right-cue2").innerHTML = '';
     document.getElementsByTagName('body')[0].style = 'background: linear-gradient(-225deg, #24EAC3, 55%, #3456C1);'
-        // Beginning screen
+    // Beginning screen
     document.getElementById("content-text").innerHTML = `
     <div class="picture">
             <img id="TWpic" src="前端pic/TW.png">
@@ -158,11 +153,9 @@ function process_block0() {
 
 // Pairing Block: DPP 左;  KMT 右
 function process_block1() {
-    // present button layouts: pos & DPP on left
-    document.getElementById("left-cue2").innerHTML = '民進黨';
-    document.getElementById("right-cue2").innerHTML = '國民黨';
     // present stimulus
     write_stim();
+    // present button layouts: pos & DPP on left
     document.getElementById("content-textB").innerHTML = `
     <div class="EI">
         <button id="E" type="button">E / 民進黨</button>
@@ -173,11 +166,9 @@ function process_block1() {
 
 // Pairing Block: postive 左;  negative 右
 function process_block2() {
-    // present button layouts: pos & DPP on left
-    document.getElementById("left-cue1").innerHTML = '正面';
-    document.getElementById("right-cue1").innerHTML = '負面';
     // present stimulus
     write_stim();
+    // present button layouts: pos & DPP on left
     document.getElementById("content-textB").innerHTML = `
     <div class="EI">
         <button id="E" type="button">E / 正面</button>
@@ -188,13 +179,9 @@ function process_block2() {
 
 // Testing Block: DPP 左;  KMT 右;  postive 左;  negative 右
 function process_block3() {
-    // present button layouts: pos & DPP on left
-    document.getElementById("left-cue1").innerHTML = '正面';
-    document.getElementById("left-cue2").innerHTML = '民進黨';
-    document.getElementById("right-cue1").innerHTML = '負面';
-    document.getElementById("right-cue2").innerHTML = '國民黨';
     // present stimulus
     write_stim();
+    // present button layouts: pos & DPP on left
     document.getElementById("content-textB").innerHTML = `
     <div class="EI">
         <button id="E" type="button">E / 民進黨 正面</button>
@@ -205,13 +192,9 @@ function process_block3() {
 
 // Pairing Block: KMT 左;  DPP 右
 function process_block4() {
-    // present button layouts: DPP on left
-    document.getElementById("left-cue1").innerHTML = '';
-    document.getElementById("left-cue2").innerHTML = '國民黨';
-    document.getElementById("right-cue1").innerHTML = '';
-    document.getElementById("right-cue2").innerHTML = '民進黨';
     // present stimulus
     write_stim();
+    // present button layouts: DPP on left
     document.getElementById("content-textB").innerHTML = `
     <div class="EI">
         <button id="E" type="button">E / 國民黨</button>
@@ -222,13 +205,9 @@ function process_block4() {
 
 // Testing Block: KMT 左;  DPP 右;  postive 左;  negative 右
 function process_block5() {
-    // present button layouts: pos & DPP on left
-    document.getElementById("left-cue1").innerHTML = '正面';
-    document.getElementById("left-cue2").innerHTML = '國民黨';
-    document.getElementById("right-cue1").innerHTML = '負面';
-    document.getElementById("right-cue2").innerHTML = '民進黨';
     // present stimulus
     write_stim();
+    // present button layouts: pos & DPP on left
     document.getElementById("content-textB").innerHTML = `
     <div class="EI">
         <button id="E" type="button">E / 國民黨 正面</button>
@@ -269,10 +248,8 @@ function process_block6() {
 
 // Interval Blocks
 function process_block01() {
-    document.getElementById("left-cue2").innerHTML = '民進黨';
-    document.getElementById("right-cue2").innerHTML = '國民黨';
     document.getElementsByTagName('body')[0].style = 'background: linear-gradient(90deg, #66CCCC, 55%, #6666CC);'
-        // Write instructions
+    // Write instructions
     document.getElementById("content-text").innerHTML = `
     <div class="inst">
         <p>注意上方的<b>類別標籤</b> ！！！</p>
@@ -289,30 +266,18 @@ function process_block01() {
 };
 
 function process_block12() {
-    document.getElementById("left-cue1").innerHTML = '正面';
-    document.getElementById("right-cue1").innerHTML = '負面';
     write_instuctions('正面', '負面', '', '');
 };
 
 function process_block23() {
-    document.getElementById("left-cue1").innerHTML = '正面';
-    document.getElementById("right-cue1").innerHTML = '負面';
-    document.getElementById("left-cue2").innerHTML = '民進黨';
-    document.getElementById("right-cue2").innerHTML = '國民黨';
     write_instuctions('正面', '負面', '或<b>民進黨</b>', '或<b>國民黨</b>');
 };
 
 function process_block34() {
-    document.getElementById("left-cue2").innerHTML = '國民黨';
-    document.getElementById("right-cue2").innerHTML = '民進黨';
     write_instuctions('國民黨', '民進黨', '', '');
 };
 
 function process_block45() {
-    document.getElementById("left-cue1").innerHTML = '正面';
-    document.getElementById("right-cue1").innerHTML = '負面';
-    document.getElementById("left-cue2").innerHTML = '國民黨';
-    document.getElementById("right-cue2").innerHTML = '民進黨';
     write_instuctions('正面', '負面', '或<b>國民黨</b>', '或<b>民進黨</b>');
 };
 
@@ -352,7 +317,7 @@ function resp_feedback(wrongAnswer) {
     if (data.answer == wrongAnswer) {
         cleanStim();
         document.getElementById("content-text").innerHTML = 'WRONG';
-        document.getElementById("content-text").style = 'color:red;font-weight:bold;font-size:1.3em';
+        document.getElementById("content-text").style = 'color:red;font-weight:bold;font-size:3em';
         wrong.play();
     } else beep.play();
 }
@@ -367,10 +332,12 @@ function cleanStim() {
 
 // Clean up previous cues
 function cleanCues() {
+    /*
     document.getElementById("left-cue1").innerHTML = '';
     document.getElementById("left-cue2").innerHTML = '';
     document.getElementById("right-cue1").innerHTML = '';
     document.getElementById("right-cue2").innerHTML = '';
+    */
     document.getElementById("content-textB").innerHTML = '';
 }
 
