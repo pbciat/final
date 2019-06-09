@@ -159,9 +159,9 @@ def judge(stim_lst):
                         block5_rt_lst.append("Average reaction time : " + str(block5_rt))
 
     if valid == 1:
-        if block3_rt < block5_rt:
+        if block3_rt < block5_rt - 0.25:
             stim_lst[len(stim_lst) - 1].content = "DPP"
-        elif block3_rt > block5_rt:
+        elif block3_rt - 0.1 > block5_rt:
             stim_lst[len(stim_lst) - 1].content = "KMT"
         else:
             stim_lst[len(stim_lst) - 1].content = "neutral"
