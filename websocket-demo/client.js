@@ -169,12 +169,7 @@ function process_block2() {
     // present stimulus
     write_stim();
     // present button layouts: pos & DPP on left
-    document.getElementById("content-textB").innerHTML = `
-    <div class="EI">
-        <button id="E" type="button">E / 正面</button>
-        <button id="I" type="button">I / 負面</button>
-    </div>
-    `;
+    twobuttons('正面', '負面', '', '');
 }
 
 // Testing Block: DPP 左;  KMT 右;  postive 左;  negative 右
@@ -182,12 +177,7 @@ function process_block3() {
     // present stimulus
     write_stim();
     // present button layouts: pos & DPP on left
-    document.getElementById("content-textB").innerHTML = `
-    <div class="EI">
-        <button id="E" type="button">E / 民進黨 正面</button>
-        <button id="I" type="button">I / 國民黨 負面</button>
-    </div>
-    `;
+    twobuttons('正面', '負面', ' 民進黨 ', ' 國民黨 ');
 }
 
 // Pairing Block: KMT 左;  DPP 右
@@ -195,12 +185,7 @@ function process_block4() {
     // present stimulus
     write_stim();
     // present button layouts: DPP on left
-    document.getElementById("content-textB").innerHTML = `
-    <div class="EI">
-        <button id="E" type="button">E / 國民黨</button>
-        <button id="I" type="button">I / 民進黨</button>
-    </div>
-    `;
+    twobuttons('國民黨', '民進黨', '', '');
 }
 
 // Testing Block: KMT 左;  DPP 右;  postive 左;  negative 右
@@ -208,12 +193,7 @@ function process_block5() {
     // present stimulus
     write_stim();
     // present button layouts: pos & DPP on left
-    document.getElementById("content-textB").innerHTML = `
-    <div class="EI">
-        <button id="E" type="button">E / 國民黨 正面</button>
-        <button id="I" type="button">I / 民進黨 負面</button>
-    </div>
-    `;
+    twobuttons('正面', '負面', ' 國民黨', ' 民進黨');
 }
 
 // 結束畫面
@@ -272,7 +252,7 @@ function process_block12() {
 
 function process_block23() {
     write_instuctions('正面', '負面', '或<b>民進黨</b>', '或<b>國民黨</b>');
-    twobuttons('正面', '負面', '民進黨 ', '國民黨 ');
+    twobuttons('正面', '負面', ' 民進黨 ', ' 國民黨 ');
 };
 
 function process_block34() {
@@ -282,7 +262,7 @@ function process_block34() {
 
 function process_block45() {
     write_instuctions('正面', '負面', '或<b>國民黨</b>', '或<b>民進黨</b>');
-    twobuttons('正面', '負面', '國民黨', '民進黨');
+    twobuttons('正面', '負面', ' 國民黨', ' 民進黨');
 };
 
 function write_instuctions(left, right, left2, right2) {
@@ -311,7 +291,7 @@ function write_stim() {
     if (data.type == 'text') {
         document.getElementById("content-text").innerHTML = data.content;
         if (data.cnpt_attr == 'a') {
-            document.getElementById("content-text").style = 'font-size:3.0em;color:green;';
+            document.getElementById("content-text").style = 'font-size:3.0em;color:#fff9c7;';
         }
     } else if (data.type == 'img') {
         document.getElementById("content-img").src = data.content;
