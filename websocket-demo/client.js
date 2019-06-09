@@ -7,10 +7,6 @@ var wrong = document.getElementById("wrong"); // wrong.mp3
 var mario = document.getElementById("mario"); // mario.mp3
 
 
-/*
-ToDo: Ignore keys other than space on staring or interval trials
-*/
-
 document.onkeydown = function(e) {
     e = e || window.event;
 
@@ -28,12 +24,14 @@ document.onkeydown = function(e) {
         if (e.keyCode == 69) { // keycode for e
             RT = getRT();
             correct = (data.answer == 'left') ? 'true' : 'false';
+            document.getElementById("E").click();
             resp_feedback('right');
 
-            // pressed right key
+        // pressed right key
         } else if (e.keyCode == 73) {
             RT = getRT();
             correct = (data.answer == 'right') ? 'true' : 'false';
+            document.getElementById("I").click();
             resp_feedback('left');
         }
         // Pressed space
@@ -158,8 +156,8 @@ function process_block1() {
     // present button layouts: pos & DPP on left
     document.getElementById("content-textB").innerHTML = `
     <div class="EI">
-        <button id="E" type="button">E / 民進黨</button>
-        <button id="I" type="button">I / 國民黨</button>
+        <button id="E" type="button" onclick="Print(this)">E / 民進黨</button>
+        <button id="I" type="button" onclick="Print(this)">I / 國民黨</button>
     </div>
     `;
 }
@@ -332,12 +330,6 @@ function cleanStim() {
 
 // Clean up previous cues
 function cleanCues() {
-    /*
-    document.getElementById("left-cue1").innerHTML = '';
-    document.getElementById("left-cue2").innerHTML = '';
-    document.getElementById("right-cue1").innerHTML = '';
-    document.getElementById("right-cue2").innerHTML = '';
-    */
     document.getElementById("content-textB").innerHTML = '';
 }
 
@@ -345,4 +337,11 @@ function getRT() {
     var end = new Date().getTime();
     var timeTaken = (end - start) / 1000;
     return timeTaken
+}
+
+
+// Show button click effect
+Print = function(button){
+	button.style = 'background:rgb(124, 120, 120);color:white;';
+	setTimeout( function(){ button.style = ''; }, 200 );
 }
