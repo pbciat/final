@@ -20,7 +20,7 @@ upload_files() {
 ###### git flow ######
 setup_git
 
-cd websocket-demo
+cd front-end
 > .nojekyll
 
 # Compile client.js
