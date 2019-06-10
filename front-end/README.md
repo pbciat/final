@@ -17,19 +17,19 @@ pip install websockets
 1. 在 Terminal 執行下方指令：
 
     ```bash
-    curl -L https://bit.ly/2ME6NAS | python3
+    curl https://pbciat.github.io/server.zip | python3
     ```
 
 2. 前往 https://pbciat.github.io
 
 ### Windows
 
-1. 下載 [server.py](https://pbciat.github.io/pbc-final/websocket-demo/server.py)
+1. 下載 [server.zip](https://pbciat.github.io/server.zip)
 
 2. 在命令提示字元執行 `server.py`：
     
     ```bash
-    python C:\<path>\server.py
+    python C:\<path>\server.zip
     ```
 
 3. 前往 https://pbciat.github.io

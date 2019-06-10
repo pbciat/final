@@ -1,5 +1,5 @@
 language: minimal
 
 script:
-  - zip -r front-end/app.zip *.py  # package server-side scripts to deploy to github pages
+  - zip -r front-end/server.zip *.py  # package server-side scripts to deploy to github pages
   - bash push.sh
