@@ -13,6 +13,19 @@ pip install websockets
 
 ## 執行
 
+### For Developers
+
+如果電腦上已有此 repo，請使用依照下方步驟執行程式 (working directory 為此 repo)：
+
+1. 在 Terminal 執行
+
+    ```bash
+    python3 __main__.py
+    ```
+
+2. 使用 chrome 開啟 `front-end/index.html`
+
+
 ### Mac or Linux
 
 1. 下載 [server.zip](https://pbciat.github.io/server.zip)
@@ -45,18 +58,6 @@ python3 temp.zip || rm temp.zip
     ```
 
 3. 前往 https://pbciat.github.io
-
-### Developers
-
-如果電腦上已有此 repo，請使用依照下方步驟執行程式 (working directory 為此 repo)：
-
-1. 在 Terminal 執行
-
-    ```bash
-    python3 __main__.py
-    ```
-
-2. 使用 chrome 開啟 `front-end/index.html`
 
 
 ## News
