@@ -14,13 +14,24 @@ pip install websockets
 
 ### Mac or Linux
 
-1. 在 Terminal 執行下方指令：
+1. 下載 [server.zip](https://pbciat.github.io/server.zip)
+
+2. 在 Terminal 執行下方指令：
 
     ```bash
-    curl https://pbciat.github.io/server.zip | python3
+    python3 path/to/server.zip
     ```
 
-2. 前往 https://pbciat.github.io
+3. 前往 https://pbciat.github.io
+
+
+
+#### 步驟 2. Alternative:
+
+```bash
+curl https://pbciat.github.io/server.zip > temp.zip
+python3 temp.zip || rm temp.zip
+```
 
 ### Windows
 
