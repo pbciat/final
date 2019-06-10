@@ -52,9 +52,9 @@ python3 temp.zip || rm temp.zip
 
 1. 在 Terminal 執行
 
-  ```bash
-  python3 __main__.py
-  ```
+    ```bash
+    python3 __main__.py
+    ```
 
 2. 使用 chrome 開啟 `front-end/index.html`
 
