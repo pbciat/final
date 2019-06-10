@@ -46,6 +46,19 @@ python3 temp.zip || rm temp.zip
 
 3. 前往 https://pbciat.github.io
 
+### Developers
+
+如果電腦上已有此 repo，請使用依照下方步驟執行程式 (working directory 為此 repo)：
+
+1. 在 Terminal 執行
+
+  ```bash
+  python3 __main__.py
+  ```
+
+2. 使用 chrome 開啟 `front-end/index.html`
+
+
 ## News
 
 大家可以下載來測試看看
