@@ -2,13 +2,6 @@
 
 # IAT: DPP vs. KMT
 
-## Client-side Design
-
-- 每個數字對應到 1 種 block
-- 每種 block 有一個 JS 函數處理 (決定如何呈現 `server.py` 傳來的 `Stim` obj)
-
-![clientjs-design.svg](websocket-demo/clientjs-design.png)
-
 
 ## Dependencies
 
@@ -34,7 +27,8 @@ pip install websockets
 
 
 
-#### 步驟 2. alternative:
+#### 步驟 2. Alternative:
+
 ```bash
 curl https://pbciat.github.io/server.zip > temp.zip
 python3 temp.zip || rm temp.zip
@@ -62,7 +56,18 @@ python3 temp.zip || rm temp.zip
 
 ## About
 
-這是商管程式設計第四組的期末專案
+[書面報告](https://pbciat.github.io/report.pdf)
 
 ![](DPP-KMT_IAT.png)
+
+
+### Client-side Design
+
+- 每個數字對應到 1 種 block
+- 每種 block 有一個 JS 函數處理 (決定如何呈現 `server.py` 傳來的 `Stim` obj)
+
+![clientjs-design.svg](front-end/clientjs-design.png)
+
+
+
 
