@@ -45,7 +45,7 @@ class Stim():
 
 
 # Calculating the result of the experiment from the list of Stim objects
-def judge(stim_lst):
+def judge(stim_lst, DPP_list):
     valid = 1
     for i in range(len(stim_lst)): 
         if stim_lst[i].block == "3" or stim_lst[i].block == "5":
